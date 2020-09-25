@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 407583090}
   - component: {fileID: 407583089}
   m_Layer: 0
-  m_Name: AIPlayer
+  m_Name: Player Two
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,6 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 1120792814}
+  fireFrequency: 1.203
+  canShoot: 1
 --- !u!4 &407583091
 Transform:
   m_ObjectHideFlags: 0
@@ -345,7 +347,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85d4b52ec2f79dd44b0aabba8600c299, type: 2}
+  - {fileID: 2100000, guid: d13ecfc45c2624548b994db270dcee49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1487,7 +1489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 1326515962}
-  controlType: 0
+  controlType: 2
 --- !u!4 &1929746726
 Transform:
   m_ObjectHideFlags: 0
@@ -1527,6 +1529,15 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 1929746724}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: cannonballSpeed
+      value: 30000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786441126, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 24.21
+      objectReference: {fileID: 0}
     - target: {fileID: 7021006403561118300, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: m_Name
