@@ -4,17 +4,6 @@ using UnityEngine;
 
 public class ScoreTracker : MonoBehaviour
 {
-    public float currentScore = 0;
+    public float currentScore = 0; //Holds onto the player's score
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -7,7 +7,7 @@ public class HumanController : MonoBehaviour
     public ShipMover mover;
     private ShipShooter shooter;
 
-    public enum ControlType {WASD, ArrowKeys, GamePad};
+    public enum ControlType {WASD, ArrowKeys, Controller1, Controller2};
     public ControlType controlType;
 
 
@@ -20,9 +20,12 @@ public class HumanController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 directionToMove = Vector3.zero;
+        if (mover == null) return; //Prevents crashing on destruction
 
-        if(controlType == ControlType.WASD)
+
+        Vector3 directionToMove = Vector3.zero; //Inputs direction into mover
+
+        if(controlType == ControlType.WASD) //Set of controls based on using WASD keys
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -57,7 +60,7 @@ public class HumanController : MonoBehaviour
             }
         }
 
-        if (controlType == ControlType.ArrowKeys)
+        if (controlType == ControlType.ArrowKeys) //Set of controls based on using arrow keys
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -86,11 +89,43 @@ public class HumanController : MonoBehaviour
             }
         }
 
-        if (controlType == ControlType.GamePad)
+        if (controlType == ControlType.Controller1) //Set of controls based on being controller 1
         {
+            if (Input.GetAxis("Vertical1") > 0.5)
+            {
+                //Move forward (+)
+                directionToMove = mover.transform.forward;
+                mover.movingForward = true;
+            }
+
+            if (Input.GetAxis("Vertical1") < -0.5)
+            {
+                //Move backward (-)
+                directionToMove = -mover.transform.forward;
+                mover.movingForward = false;
+            }
+
+            if(Input.GetAxis("Horizontal1") > 0.5)
+            {
+                //Rotate Clockwise (-)
+                mover.Rotate(true);
+            }
+
+            if (Input.GetAxis("Horizontal1") < -0.5)
+            {
+                //Rotate Counterclockwise (+)
+                mover.Rotate(false);
+            }
+
+            if (Input.GetButton("Fire1"))
+            {
+                //Shoots cannon
+                shooter.Shoot();
+            }
 
         }
 
+        //Updates mover with input-based directions
         if (mover != null)
         {
             mover.BroadcastMessage("Move", directionToMove);

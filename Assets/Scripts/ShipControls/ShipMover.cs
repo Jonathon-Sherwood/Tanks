@@ -6,7 +6,7 @@ public class ShipMover : MonoBehaviour
 {
     private CharacterController cc;
     private ShipData data;
-    public bool movingForward;
+    public bool movingForward; //Used for calculating reverse speed
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +15,7 @@ public class ShipMover : MonoBehaviour
         data = GetComponent<ShipData>();
     }
 
+    //Takes in a value from controllers to move towards
     public void Move(Vector3 direction)
     {
         if (movingForward)
@@ -27,6 +28,7 @@ public class ShipMover : MonoBehaviour
         }
     }
 
+    //Recieves bool from controllers for rotation
     public void Rotate(bool isClockwise)
     {
         if (isClockwise)

@@ -22,11 +22,16 @@ public class TakeDamage : MonoBehaviour
         }
     }
 
+    //Destroys this gameobject once health reaches 0
     private void Die()
     {
         Destroy(this.gameObject);
     }
 
+    /// <summary>
+    /// Input amount of damage taken from outside sources
+    /// </summary>
+    /// <param name="damage"></param>
     public void DamageTaken(float damage)
     {
         currentHealth -= damage;
@@ -34,13 +39,13 @@ public class TakeDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Cannon"))
+        if (other.CompareTag("Cannon")) //Accepts damage from sources on hit from cannon
         {
             GameObject attacker = other.gameObject.GetComponent<Cannonball>().spawnOrigin;
             float damageDealt = attacker.GetComponent<ShipData>().damageDealt;
             DamageTaken(damageDealt);
 
-            if(currentHealth <= 0)
+            if(currentHealth <= 0) //Gives score to killer on death based on shipdata value
             {
                 attacker.GetComponent<ShipData>().owner.GetComponent<ScoreTracker>().currentScore += data.scoreValue;
             }

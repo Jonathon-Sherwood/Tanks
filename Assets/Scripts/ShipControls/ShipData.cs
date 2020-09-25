@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Master class that holds all data regarding stats for ships
+/// </summary>
 public class ShipData : MonoBehaviour
 {
     public float forwardMoveSpeed;
@@ -18,19 +21,7 @@ public class ShipData : MonoBehaviour
     public float maxHealth;
     public float scoreValue;
 
-    public GameObject owner;
-    public GameObject cannonballPrefab;
-    public GameObject firePoint;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Tooltip("Place controlling player here")] public GameObject owner;
+    [Tooltip("Place cannonball from prefabs folder here")] public GameObject cannonballPrefab;
+    [Tooltip("Place firepoint gameobject that cannons will fire from here")] public GameObject firePoint;
 }

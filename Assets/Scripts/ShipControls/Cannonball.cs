@@ -4,34 +4,18 @@ using UnityEngine;
 
 public class Cannonball : MonoBehaviour
 {
-    Rigidbody rb;
-
-    public GameObject spawnOrigin;
-    float damage;
+    public GameObject spawnOrigin; //Given a value by the ship that instantiates this
+    float damage; //Pulls from the ship that instantiates this
 
     // Start is called before the first frame update
-    void start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
         damage = spawnOrigin.GetComponent<ShipData>().damageDealt;
-        print(damage);
     }
 
+    //Destroys cannon on impact with anything
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag("Ship"))
-        //{
-        //    other.gameObject.GetComponent<TakeDamage>().currentHealth -= spawnOrigin.GetComponent<ShipData>().damageDealt;
-        //    Destroy(this.gameObject);
-        //}
-        //else
-        //{
             Destroy(this.gameObject);
-        //}
     }
 }
