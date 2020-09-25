@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class ShipData : MonoBehaviour
 {
-    public float moveSpeed;
+    public float forwardMoveSpeed;
+    public float backwardMoveSpeed;
     public float rotateSpeed;
+    public float shotsPerSecond;
+    public float cannonballSpeed;
+    public float cannonballDuration;
+    public float damageDealt;
+    public float health;
+
+    public GameObject cannonballPrefab;
+    public GameObject firePoint;
 
     // Start is called before the first frame update
     void Start()

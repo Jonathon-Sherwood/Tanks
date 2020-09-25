@@ -6,6 +6,7 @@ public class ShipMover : MonoBehaviour
 {
     private CharacterController cc;
     private ShipData data;
+    public bool movingForward;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,14 @@ public class ShipMover : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-            cc.SimpleMove(direction * data.moveSpeed);
+        if (movingForward)
+        {
+            cc.SimpleMove(direction * data.forwardMoveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            cc.SimpleMove(direction * data.backwardMoveSpeed * Time.deltaTime);
+        }
     }
 
     public void Rotate(bool isClockwise)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class HumanController : MonoBehaviour
 {
     public ShipMover mover;
+    public ShipShooter shooter;
 
     public enum ControlType {WASD, ArrowKeys, GamePad};
     public ControlType controlType;
@@ -27,12 +28,14 @@ public class HumanController : MonoBehaviour
             {
                 //Move Forward (+)
                 directionToMove = mover.transform.forward;
+                mover.movingForward = true;
             }
 
             if (Input.GetKey(KeyCode.S))
             {
                 //Move Backward (-)
                 directionToMove = -mover.transform.forward;
+                mover.movingForward = false;
             }
 
             if (Input.GetKey(KeyCode.A))
@@ -46,6 +49,12 @@ public class HumanController : MonoBehaviour
                 //Rotate Clockwise (-)
                 mover.Rotate(true);
             }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //Shoots Cannon
+                shooter.Shoot();
+            }
         }
 
         if (controlType == ControlType.ArrowKeys)
@@ -53,21 +62,27 @@ public class HumanController : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 //Move Forward (+)
+                directionToMove = mover.transform.forward;
+                mover.movingForward = true;
             }
 
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 //Move Backward (-)
+                directionToMove = -mover.transform.forward;
+                mover.movingForward = false;
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 //Rotate CounterClockwise (+)
+                mover.Rotate(false);
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 //Rotate Clockwise (-)
+                mover.Rotate(true);
             }
         }
 
@@ -76,6 +91,7 @@ public class HumanController : MonoBehaviour
 
         }
 
-        mover.Move(directionToMove);
+        mover.BroadcastMessage("Move", directionToMove);
+        //mover.Move(directionToMove);
     }
 }
