@@ -7,12 +7,18 @@ public class ShipData : MonoBehaviour
     public float forwardMoveSpeed;
     public float backwardMoveSpeed;
     public float rotateSpeed;
+    [Tooltip("Calculated at time of play. Tick 'Recalculate Shots Per Second' to update in realtime")]
     public float shotsPerSecond;
+    [Tooltip("Tick after updating in playmode for realtime changes")]
+    public bool recalculateShotsPerSecond;
     public float cannonballSpeed;
     public float cannonballDuration;
     public float damageDealt;
-    public float health;
+    public float crashDamage;
+    public float maxHealth;
+    public float scoreValue;
 
+    public GameObject owner;
     public GameObject cannonballPrefab;
     public GameObject firePoint;
 

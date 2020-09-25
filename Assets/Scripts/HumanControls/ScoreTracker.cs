@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannonball : MonoBehaviour
+public class ScoreTracker : MonoBehaviour
 {
-    Rigidbody rb;
-    ShipData data;
+    public float currentScore = 0;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        //data = transform.parent.parent.gameObject.GetComponent<ShipData>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 }

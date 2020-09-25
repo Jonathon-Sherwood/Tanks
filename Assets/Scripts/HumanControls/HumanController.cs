@@ -5,7 +5,7 @@ using UnityEngine;
 public class HumanController : MonoBehaviour
 {
     public ShipMover mover;
-    public ShipShooter shooter;
+    private ShipShooter shooter;
 
     public enum ControlType {WASD, ArrowKeys, GamePad};
     public ControlType controlType;
@@ -14,7 +14,7 @@ public class HumanController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        shooter = mover.gameObject.GetComponent<ShipShooter>();   
     }
 
     // Update is called once per frame
@@ -91,7 +91,9 @@ public class HumanController : MonoBehaviour
 
         }
 
-        mover.BroadcastMessage("Move", directionToMove);
-        //mover.Move(directionToMove);
+        if (mover != null)
+        {
+            mover.BroadcastMessage("Move", directionToMove);
+        }
     }
 }
