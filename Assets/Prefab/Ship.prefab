@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786441125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.41, y: 3.91, z: 17.93}
+  m_LocalPosition: {x: -2.41, y: 3.91, z: 24.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7021006403561363958}
@@ -881,8 +881,8 @@ GameObject:
   - component: {fileID: 7790735655102300596}
   - component: {fileID: -6364315053487326838}
   - component: {fileID: 8259337952052854169}
-  - component: {fileID: 7021006404720199101}
   - component: {fileID: 1326515963}
+  - component: {fileID: 1716970637}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Ship
@@ -944,17 +944,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886d7cc14a606e44db127f2cf8121c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardMoveSpeed: 10000
-  backwardMoveSpeed: 1000
-  rotateSpeed: 50
+  forwardMoveSpeed: 50
+  backwardMoveSpeed: 10
+  rotateSpeed: 10
   shotsPerSecond: 1
   recalculateShotsPerSecond: 0
-  cannonballSpeed: 3000
+  cannonballSpeed: 5000
   cannonballDuration: 2
   damageDealt: 1
   crashDamage: 1
   maxHealth: 1
   scoreValue: 300
+  mover: {fileID: 0}
   owner: {fileID: 0}
   cannonballPrefab: {fileID: 3721200282337891447, guid: 8c54f921c98e91449be50b29321daa69,
     type: 3}
@@ -971,24 +972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21322e44b1c42ea49884079bfd479028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!143 &7021006404720199101
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7021006403561118300}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &1326515963
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1000,8 +983,24 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.464107, y: 26.03276, z: 28.603662}
-  m_Center: {x: -0.39144918, y: 6.9130707, z: 1.8244239}
+  m_Size: {x: 4.9436407, y: 20.823336, z: 31.645187}
+  m_Center: {x: 0.36878395, y: 9.517783, z: 0.30366135}
+--- !u!54 &1716970637
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021006403561118300}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 12.02
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!1 &7021006403561126272
 GameObject:
   m_ObjectHideFlags: 0

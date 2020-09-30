@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class ShipMover : Mover
 {
-    private CharacterController cc;
     private ShipData data;
+    private Rigidbody rb;
     public bool movingForward; //Used for calculating reverse speed
 
     // Start is called before the first frame update
     public override void Start()
     {
-        cc = GetComponent<CharacterController>();
         data = GetComponent<ShipData>();
+        rb = GetComponent<Rigidbody>();
     }
 
+
     //Takes in a value from controllers to move towards
-    public override void Move(Vector3 direction)
+    public override void Move(bool movingForward)
     {
+        Vector3 movement = transform.rotation * Vector3.forward;
+
         if (movingForward)
         {
-            cc.SimpleMove(direction * data.forwardMoveSpeed * Time.deltaTime);
+            rb.velocity = movement * data.forwardMoveSpeed * Time.deltaTime;
         }
-        else
+        else if (!movingForward)
         {
-            cc.SimpleMove(direction * data.backwardMoveSpeed * Time.deltaTime);
+            //rb.velocity = -movement * data.backwardMoveSpeed * Time.deltaTime;
         }
     }
 
@@ -47,7 +50,7 @@ public class ShipMover : Mover
         RotateTowards(targetTransform);
 
         //Move forward
-        cc.SimpleMove(transform.forward * data.forwardMoveSpeed);
+        transform.position += transform.forward * data.forwardMoveSpeed * Time.deltaTime;
     }
 
     public override void RotateTowards(Transform targetTransform)
@@ -59,7 +62,7 @@ public class ShipMover : Mover
         Quaternion targetRotation = Quaternion.LookRotation(targetVector);
 
         //Sets rotation
-        Quaternion newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, data.rotateSpeed);
+        Quaternion newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, data.rotateSpeed * Time.deltaTime);
 
         //Moves us towards new rotation
         transform.rotation = newRotation;

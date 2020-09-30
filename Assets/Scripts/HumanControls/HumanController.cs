@@ -22,23 +22,18 @@ public class HumanController : Controller
     {
         if (mover == null) return; //Prevents crashing on destruction
 
-
-        Vector3 directionToMove = Vector3.zero; //Inputs direction into mover
-
         if(controlType == ControlType.WASD) //Set of controls based on using WASD keys
         {
             if (Input.GetKey(KeyCode.W))
             {
                 //Move Forward (+)
-                directionToMove = mover.transform.forward;
-                mover.movingForward = true;
+                mover.Move(true);
             }
 
             if (Input.GetKey(KeyCode.S))
             {
                 //Move Backward (-)
-                directionToMove = -mover.transform.forward;
-                mover.movingForward = false;
+                mover.Move(false);
             }
 
             if (Input.GetKey(KeyCode.A))
@@ -65,14 +60,12 @@ public class HumanController : Controller
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 //Move Forward (+)
-                directionToMove = mover.transform.forward;
                 mover.movingForward = true;
             }
 
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 //Move Backward (-)
-                directionToMove = -mover.transform.forward;
                 mover.movingForward = false;
             }
 
@@ -94,14 +87,12 @@ public class HumanController : Controller
             if (Input.GetAxis("Vertical1") > 0.5)
             {
                 //Move forward (+)
-                directionToMove = mover.transform.forward;
                 mover.movingForward = true;
             }
 
             if (Input.GetAxis("Vertical1") < -0.5)
             {
                 //Move backward (-)
-                directionToMove = -mover.transform.forward;
                 mover.movingForward = false;
             }
 
@@ -122,13 +113,6 @@ public class HumanController : Controller
                 //Shoots cannon
                 shooter.Shoot();
             }
-
-        }
-
-        //Updates mover with input-based directions
-        if (mover != null)
-        {
-            mover.BroadcastMessage("Move", directionToMove);
         }
     }
 }

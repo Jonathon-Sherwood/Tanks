@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 327354481}
   - component: {fileID: 327354482}
   m_Layer: 0
-  m_Name: Waypoint2
+  m_Name: Waypoint 1
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327354480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -110.6, y: 2, z: 0}
+  m_LocalPosition: {x: -460, y: 3, z: -351.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 948980333}
@@ -246,13 +246,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e64d7ed8f05f0b4f9918805e2d212c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooter: {fileID: 764019116}
   mover: {fileID: 1120792814}
   fireFrequency: 1.203
+  canShoot: 1
   waypoints:
   - {fileID: 2104189913}
   - {fileID: 327354482}
   - {fileID: 959684223}
-  canShoot: 1
+  waypointBufferDistance: 20
 --- !u!4 &407583091
 Transform:
   m_ObjectHideFlags: 0
@@ -528,6 +530,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &764019116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7790735655102300596, guid: b00647846676f944383ecbced13cb368,
+    type: 3}
+  m_PrefabInstance: {fileID: 930963037}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c502814fda16e0c439539e9a54421072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &807682914
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,9 +725,33 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 407583088}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: forwardMoveSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: backwardMoveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: rotateSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 963194225, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1326515963, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687724718872418929, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7021006403561118300, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -723,7 +761,7 @@ PrefabInstance:
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.9325933
+      value: -387.7
       objectReference: {fileID: 0}
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -733,7 +771,7 @@ PrefabInstance:
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30.394722
+      value: -11.4
       objectReference: {fileID: 0}
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -958,7 +996,7 @@ GameObject:
   - component: {fileID: 959684222}
   - component: {fileID: 959684223}
   m_Layer: 0
-  m_Name: Waypoint3
+  m_Name: Waypoint 2
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -972,7 +1010,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959684221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.6, y: 2, z: 72.1}
+  m_LocalPosition: {x: -386, y: 3, z: -279.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 948980333}
@@ -1670,7 +1708,7 @@ GameObject:
   - component: {fileID: 2104189912}
   - component: {fileID: 2104189913}
   m_Layer: 0
-  m_Name: Waypoint1
+  m_Name: Waypoint 0
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1684,7 +1722,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104189911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100.1, y: 2, z: 0}
+  m_LocalPosition: {x: -110.8, y: 3, z: -351.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 948980333}
@@ -1716,12 +1754,56 @@ PrefabInstance:
       objectReference: {fileID: 1929746724}
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
-      propertyPath: cannonballSpeed
-      value: 1000
+      propertyPath: forwardMoveSpeed
+      value: 2000
       objectReference: {fileID: 0}
-    - target: {fileID: 1786441126, guid: b00647846676f944383ecbced13cb368, type: 3}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: acceleration
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: backwardMoveSpeed
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: rotateSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194228, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.26320463
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194228, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.019389
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194228, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.005242619
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194228, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.96453094
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194228, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.34014863
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194228, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 56.660416
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194228, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.21
+      value: -59.063866
       objectReference: {fileID: 0}
     - target: {fileID: 7021006403561118300, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -1731,7 +1813,7 @@ PrefabInstance:
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.7
+      value: -294
       objectReference: {fileID: 0}
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -1741,7 +1823,7 @@ PrefabInstance:
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30
+      value: 783
       objectReference: {fileID: 0}
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}

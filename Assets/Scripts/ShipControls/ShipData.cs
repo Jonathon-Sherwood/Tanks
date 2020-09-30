@@ -8,6 +8,7 @@ using UnityEngine;
 public class ShipData : MonoBehaviour
 {
     public float forwardMoveSpeed;
+    public float maxSpeed;
     public float backwardMoveSpeed;
     public float rotateSpeed;
     [Tooltip("Calculated at time of play. Tick 'Recalculate Shots Per Second' to update in realtime")]

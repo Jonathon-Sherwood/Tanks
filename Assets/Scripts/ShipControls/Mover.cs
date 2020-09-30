@@ -8,6 +8,6 @@ public class Mover : MonoBehaviour
     public virtual void Update() { }
     public virtual void Rotate(bool isClockwise) { }
     public virtual void MoveTo(Transform targetTransform) { }
-    public virtual void Move(Vector3 direction) { }
+    public virtual void Move(bool movingForward) { }
     public virtual void RotateTowards(Transform targetTransform) { }
 }
