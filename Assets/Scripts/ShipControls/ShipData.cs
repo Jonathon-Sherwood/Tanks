@@ -20,8 +20,14 @@ public class ShipData : MonoBehaviour
     public float crashDamage;
     public float maxHealth;
     public float scoreValue;
+    [HideInInspector] public Mover mover;
 
     [Tooltip("Place controlling player here")] public GameObject owner;
     [Tooltip("Place cannonball from prefabs folder here")] public GameObject cannonballPrefab;
     [Tooltip("Place firepoint gameobject that cannons will fire from here")] public GameObject firePoint;
+
+    private void Start()
+    {
+        mover = GetComponent<ShipMover>();
+    }
 }

@@ -42,6 +42,7 @@ public class TakeDamage : MonoBehaviour
         if (other.CompareTag("Cannon")) //Accepts damage from sources on hit from cannon
         {
             GameObject attacker = other.gameObject.GetComponent<Cannonball>().spawnOrigin;
+            if(attacker == null) { return; }
             float damageDealt = attacker.GetComponent<ShipData>().damageDealt;
             DamageTaken(damageDealt);
 

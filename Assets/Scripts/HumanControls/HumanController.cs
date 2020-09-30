@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanController : MonoBehaviour
+public class HumanController : Controller
 {
     public ShipMover mover;
     private ShipShooter shooter;

@@ -29,6 +29,11 @@ public class ShipShooter : MonoBehaviour
     //Fires cannon forward and refreshes cooldown
     public void Shoot()
     {
+        if(data == null)
+        {
+            return;
+        }
+
         if (countdown <= 0)
         {
             countdown += shotsPerSecond + Time.deltaTime; //Restarts cooldown of shots per second

@@ -2,29 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIController : MonoBehaviour
+public class AIController : Controller
 {
+    public ShipShooter shooter;
     public ShipMover mover;
-    private ShipShooter shooter;
     private ShipData data;
 
     //Locks shots to a range from smallest to cannon cooldown
     [Range(.1f,3)]
     [Tooltip("Cannot shoot faster than shots per second on all ships. Must fire once before new value accepted. This is why it cannot be 0. Call CanShoot bool to cancel outright.")]
-    public float fireFrequency; 
-
+    public float fireFrequency;
     private float fireCountdown;
     public bool canShoot = true; //Used in inspector to cancel shots outright
 
-    // Start is called before the first frame update
-    void Start()
+    public List<Waypoint> waypoints; //Fillable list of locations for the patrol to move to
+    private int currentWaypointIndex = 0;
+    public float waypointBufferDistance = 1f;
+
+    private void Start()
     {
-        shooter = mover.gameObject.GetComponent<ShipShooter>();
-        data = mover.gameObject.GetComponent<ShipData>();
+        data = mover.GetComponent<ShipData>();
     }
+
 
     // Update is called once per frame
     void Update()
+    {
+
+
+        Patrol();
+        print(currentWaypointIndex);
+
+    }
+
+    public void Shoot()
     {
         //Shoots at an adjustable rate, no faster than any cannon cooldown
         if (Time.time >= fireCountdown && canShoot)
@@ -33,4 +44,26 @@ public class AIController : MonoBehaviour
             fireCountdown = Time.time + 1f / fireFrequency;
         }
     }
+
+    public void Patrol()
+    {
+
+
+        //If we are "close enough" to the waypoint, advance to the next waypoint
+        if(Vector3.Distance(transform.position, waypoints[currentWaypointIndex].transform.position) < waypointBufferDistance)
+        {
+            print("Point reached");
+            currentWaypointIndex++;
+        }
+
+        if(currentWaypointIndex > waypoints.Count)
+        {
+            currentWaypointIndex = 0;
+        }
+
+        //Turn towards waypoint and move forward
+        data.mover.MoveTo(waypoints[currentWaypointIndex].transform);
+
+    }
+
 }
