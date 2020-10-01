@@ -55,8 +55,11 @@ public class ShipMover : Mover
 
     public override void RotateTowards(Transform targetTransform)
     {
+        Vector3 targetPosition = targetTransform.position;
+        targetPosition.y = transform.position.y;
+
         //Rotate towards target
-        Vector3 targetVector = targetTransform.position - transform.position;
+        Vector3 targetVector = targetPosition - transform.position;
 
         //Find target rotation
         Quaternion targetRotation = Quaternion.LookRotation(targetVector);

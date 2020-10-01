@@ -19,6 +19,11 @@ public class AIController : Controller
     private int currentWaypointIndex = 0;
     public float waypointBufferDistance = 1f;
 
+    public enum PatrolType { Stop, Loop, PingPong, Random}
+    public PatrolType patrolType;
+    [HideInInspector] public bool isPatrolling = true;
+    [HideInInspector] public bool isPatrolForward = true;
+
     private void Start()
     {
         data = mover.GetComponent<ShipData>();
@@ -28,11 +33,10 @@ public class AIController : Controller
     // Update is called once per frame
     void Update()
     {
-
-
-        Patrol();
-        print(currentWaypointIndex);
-
+        if (isPatrolling)
+        {
+            Patrol();
+        }
     }
 
     public void Shoot()
@@ -48,22 +52,51 @@ public class AIController : Controller
     public void Patrol()
     {
 
-
-        //If we are "close enough" to the waypoint, advance to the next waypoint
-        if(Vector3.Distance(transform.position, waypoints[currentWaypointIndex].transform.position) < waypointBufferDistance)
-        {
-            print("Point reached");
-            currentWaypointIndex++;
-        }
-
-        if(currentWaypointIndex > waypoints.Count)
-        {
-            currentWaypointIndex = 0;
-        }
-
         //Turn towards waypoint and move forward
         data.mover.MoveTo(waypoints[currentWaypointIndex].transform);
 
+        //If we are "close enough" to the waypoint, advance to the next waypoint
+        if (Vector3.Distance(data.transform.position, waypoints[currentWaypointIndex].transform.position) < waypointBufferDistance)
+        {
+            if (isPatrolForward)
+            {
+                currentWaypointIndex++;
+            }
+            else
+            {
+                currentWaypointIndex--;
+            }
+        }
+
+
+        //Loop end
+        if (currentWaypointIndex >= waypoints.Count)
+        {
+            if (patrolType == PatrolType.Loop) //Full Circle
+            {
+                currentWaypointIndex = 0;
+            }
+            else if (patrolType == PatrolType.Random) //Random waypoints
+            {
+                currentWaypointIndex = Random.Range(0, waypoints.Count);
+            }
+            else if (patrolType == PatrolType.Stop) //Stop patrolling
+            {
+                isPatrolling = false;
+            }
+            else if (patrolType == PatrolType.PingPong) //Start moving in the opposite direction
+            {
+                isPatrolForward = !isPatrolForward;
+
+                //Keep waypoints within range
+                currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 1, waypoints.Count - 1);
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(data.transform.position, waypointBufferDistance);
     }
 
 }
