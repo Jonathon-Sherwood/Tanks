@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AIController : Controller
 {
+    //Connections to Ship
     public ShipShooter shooter;
     public ShipMover mover;
-    private ShipData data;
 
     //Locks shots to a range from smallest to cannon cooldown
     [Range(.1f,3)]
@@ -15,29 +15,60 @@ public class AIController : Controller
     private float fireCountdown;
     public bool canShoot = true; //Used in inspector to cancel shots outright
 
-    public List<Waypoint> waypoints; //Fillable list of locations for the patrol to move to
+    //Waypoints and Movement
+    public List<Waypoint> waypoints; 
     private int currentWaypointIndex = 0;
     public float waypointBufferDistance = 1f;
-
     public enum PatrolType { Stop, Loop, PingPong, Random}
     public PatrolType patrolType;
     [HideInInspector] public bool isPatrolling = true;
     [HideInInspector] public bool isPatrolForward = true;
 
-    private void Start()
+    //Statemachine
+    public enum AIStates { Idle, Spin, AttackTarget}
+    public AIStates currentState = AIStates.Idle;
+
+    //Targetting and Senses
+    public GameObject target;
+    public float fieldOfView = 60f;
+    public float viewDistance = 10f;
+    public float hearingSensitivity = 1f;
+
+    public virtual void Start()
     {
-        data = mover.GetComponent<ShipData>();
+
     }
 
-
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (isPatrolling)
         {
             Patrol();
         }
+
     }
+
+
+    public void AttackPlayer()
+    {
+        AttackTarget();
+    }
+
+    public void TargetPlayer()
+    {
+        target = GameManager.instance.players[0].data.gameObject;
+    }
+
+    public void Idle() { }
+    public void TurnToFind() { }
+
+    public void Rotate()
+    {
+        //Spins indefinitely
+        data.mover.Rotate(true);
+    }
+
 
     public void Shoot()
     {
@@ -47,6 +78,56 @@ public class AIController : Controller
             shooter.Shoot();
             fireCountdown = Time.time + 1f / fireFrequency;
         }
+    }
+
+    public void AttackTarget()
+    {
+
+    }
+
+    public void LeadAttackTarget()
+    {
+
+    }
+
+    public void FindNearestHealthPack() { }
+
+    public bool CanSee(GameObject target)
+    {
+        //Field of View Check
+        Vector3 vectorToTarget = target.transform.position - transform.position;
+        float angle = Vector3.Angle(transform.forward, vectorToTarget);
+        if(angle > fieldOfView)
+        {
+            return false;
+        }
+
+        //Line of Sight Check
+        RaycastHit hitInfo;
+        if(Physics.Raycast(transform.position, transform.forward, out hitInfo, viewDistance))
+        {
+            if (hitInfo.collider.gameObject != target)
+            {
+                return false;
+            }
+        }
+
+        //If made it through checks can see target
+        return true;
+    }
+
+    public bool CanHear(GameObject target)
+    {
+        //Can hear
+        if(Vector3.Distance(target.transform.position, transform.position) < hearingSensitivity)
+        {
+            return true;
+        }
+
+        //TODO: Soundmaker check
+
+        //Cannot hear
+        return false;
     }
 
     public void Patrol()

@@ -14,7 +14,8 @@ public class HumanController : Controller
     // Start is called before the first frame update
     void Start()
     {
-        shooter = mover.gameObject.GetComponent<ShipShooter>();   
+        shooter = mover.gameObject.GetComponent<ShipShooter>();
+        GameManager.instance.players.Add(this);
     }
 
     // Update is called once per frame
