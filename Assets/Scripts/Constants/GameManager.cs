@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance; //Allows all scripts to call this.
     public ShipData playerShipData;
-    public List<Controller> players;
+    public List<HumanController> humanPlayers;
+    public List<AIController> aiPlayers;
     public List<ShipData> shipList; //This list is attached to ship objects that will fill this list.
 
     private void Awake()
@@ -25,11 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (ShipData ship in FindObjectsOfType<ShipData>()) //Adds all ships in the game to a list
-        {
-            shipList.Add(ship);
-            print(ship.gameObject.name);
-        }
+
     }
 
     private void Update()

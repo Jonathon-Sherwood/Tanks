@@ -16,6 +16,6 @@ public class Cannonball : MonoBehaviour
     //Destroys cannon on impact with anything
     private void OnTriggerEnter(Collider other)
     {
-            Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 }

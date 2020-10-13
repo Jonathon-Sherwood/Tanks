@@ -30,5 +30,11 @@ public class ShipData : MonoBehaviour
     private void Start()
     {
         mover = GetComponent<ShipMover>();
+        GameManager.instance.shipList.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.shipList.Remove(this);
     }
 }

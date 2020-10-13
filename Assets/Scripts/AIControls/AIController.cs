@@ -27,6 +27,10 @@ public class AIController : Controller
     //Statemachine
     public enum AIStates { Idle, Spin, AttackTarget}
     public AIStates currentState = AIStates.Idle;
+    public enum AIAvoidanceState { Normal, TurnToAvoid, MoveToAvoid}
+    public AIAvoidanceState currentAvoidState = AIAvoidanceState.Normal;
+    public float lastStateChangeTime;
+    public float lastAvoidanceStateChangeTime;
 
     //Targetting and Senses
     public GameObject target;
@@ -42,11 +46,26 @@ public class AIController : Controller
     // Update is called once per frame
     public virtual void Update()
     {
-        if (isPatrolling)
+        if(GameManager.instance.playerShipData == null)
         {
-            Patrol();
+            return;
         }
+    }
 
+    public void ChangeState(AIStates newState)
+    {
+        //Set the state
+        currentState = newState;
+        //save the time
+        lastStateChangeTime = Time.time;
+    }
+
+    public void ChangeAvoidanceState(AIAvoidanceState newState)
+    {
+        //Set the state
+        currentAvoidState = newState;
+        //save the time
+        lastAvoidanceStateChangeTime = Time.time;
     }
 
 
@@ -57,11 +76,10 @@ public class AIController : Controller
 
     public void TargetPlayer()
     {
-        target = GameManager.instance.players[0].data.gameObject;
+        target = GameManager.instance.humanPlayers[0].data.gameObject;
     }
 
     public void Idle() { }
-    public void TurnToFind() { }
 
     public void Rotate()
     {
@@ -82,21 +100,30 @@ public class AIController : Controller
 
     public void AttackTarget()
     {
+        if(target != null)
+        {
+            //Move to target
+            data.mover.MoveTo(target.transform);
 
+            //shoot
+            shooter.Shoot();
+
+        }
     }
 
-    public void LeadAttackTarget()
+
+    public bool CanMoveForward(float distance)
     {
-
+        return !Physics.Raycast(data.transform.position, data.transform.forward, distance);
     }
 
-    public void FindNearestHealthPack() { }
 
     public bool CanSee(GameObject target)
     {
         //Field of View Check
-        Vector3 vectorToTarget = target.transform.position - transform.position;
-        float angle = Vector3.Angle(transform.forward, vectorToTarget);
+        if(target == null) { return false; }
+        Vector3 vectorToTarget = target.transform.position - data.transform.position;
+        float angle = Vector3.Angle(data.transform.forward, vectorToTarget);
         if(angle > fieldOfView)
         {
             return false;
@@ -104,7 +131,7 @@ public class AIController : Controller
 
         //Line of Sight Check
         RaycastHit hitInfo;
-        if(Physics.Raycast(transform.position, transform.forward, out hitInfo, viewDistance))
+        if(Physics.Raycast(data.transform.position, transform.forward, out hitInfo, viewDistance))
         {
             if (hitInfo.collider.gameObject != target)
             {
@@ -119,7 +146,7 @@ public class AIController : Controller
     public bool CanHear(GameObject target)
     {
         //Can hear
-        if(Vector3.Distance(target.transform.position, transform.position) < hearingSensitivity)
+        if(Vector3.Distance(target.transform.position, data.transform.position) < hearingSensitivity)
         {
             return true;
         }
@@ -132,45 +159,46 @@ public class AIController : Controller
 
     public void Patrol()
     {
-
-        //Turn towards waypoint and move forward
-        data.mover.MoveTo(waypoints[currentWaypointIndex].transform);
-
-        //If we are "close enough" to the waypoint, advance to the next waypoint
-        if (Vector3.Distance(data.transform.position, waypoints[currentWaypointIndex].transform.position) < waypointBufferDistance)
+        if (currentAvoidState == AIAvoidanceState.Normal)
         {
-            if (isPatrolForward)
-            {
-                currentWaypointIndex++;
-            }
-            else
-            {
-                currentWaypointIndex--;
-            }
-        }
+            //Turn towards waypoint and move forward
+            data.mover.MoveTo(waypoints[currentWaypointIndex].transform);
 
+            //If we are "close enough" to the waypoint, advance to the next waypoint
+            if (Vector3.Distance(data.transform.position, waypoints[currentWaypointIndex].transform.position) < waypointBufferDistance)
+            {
+                if (isPatrolForward)
+                {
+                    currentWaypointIndex++;
+                }
+                else
+                {
+                    currentWaypointIndex--;
+                }
+            }
 
-        //Loop end
-        if (currentWaypointIndex >= waypoints.Count)
-        {
-            if (patrolType == PatrolType.Loop) //Full Circle
+            //Loop end
+            if (currentWaypointIndex >= waypoints.Count)
             {
-                currentWaypointIndex = 0;
-            }
-            else if (patrolType == PatrolType.Random) //Random waypoints
-            {
-                currentWaypointIndex = Random.Range(0, waypoints.Count);
-            }
-            else if (patrolType == PatrolType.Stop) //Stop patrolling
-            {
-                isPatrolling = false;
-            }
-            else if (patrolType == PatrolType.PingPong) //Start moving in the opposite direction
-            {
-                isPatrolForward = !isPatrolForward;
+                if (patrolType == PatrolType.Loop) //Full Circle
+                {
+                    currentWaypointIndex = 0;
+                }
+                else if (patrolType == PatrolType.Random) //Random waypoints
+                {
+                    currentWaypointIndex = Random.Range(0, waypoints.Count);
+                }
+                else if (patrolType == PatrolType.Stop) //Stop patrolling
+                {
+                    isPatrolling = false;
+                }
+                else if (patrolType == PatrolType.PingPong) //Start moving in the opposite direction
+                {
+                    isPatrolForward = !isPatrolForward;
 
-                //Keep waypoints within range
-                currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 1, waypoints.Count - 1);
+                    //Keep waypoints within range
+                    currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 1, waypoints.Count - 1);
+                }
             }
         }
     }

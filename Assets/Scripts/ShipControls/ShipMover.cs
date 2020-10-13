@@ -46,11 +46,13 @@ public class ShipMover : Mover
 
     public override void MoveTo(Transform targetTransform)
     {
+        Vector3 movement = transform.rotation * Vector3.forward;
+
         //Rotate towards the transform
         RotateTowards(targetTransform);
 
         //Move forward
-        transform.position += transform.forward * data.forwardMoveSpeed * Time.deltaTime;
+        rb.velocity = movement * data.forwardMoveSpeed * Time.deltaTime;
     }
 
     public override void RotateTowards(Transform targetTransform)

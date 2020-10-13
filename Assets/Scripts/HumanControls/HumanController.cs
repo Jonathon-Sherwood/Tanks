@@ -15,13 +15,18 @@ public class HumanController : Controller
     void Start()
     {
         shooter = mover.gameObject.GetComponent<ShipShooter>();
-        GameManager.instance.players.Add(this);
+        GameManager.instance.humanPlayers.Add(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (mover == null) return; //Prevents crashing on destruction
+        if (mover == null)
+        {
+            //Prevents crashes and removes player's ship from player list
+            GameManager.instance.humanPlayers.Remove(this);
+            return;
+        }
 
         if(controlType == ControlType.WASD) //Set of controls based on using WASD keys
         {
