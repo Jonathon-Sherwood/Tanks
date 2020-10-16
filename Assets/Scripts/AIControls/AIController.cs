@@ -19,6 +19,9 @@ public class AIController : Controller
     public List<Waypoint> waypoints; 
     private int currentWaypointIndex = 0;
     public float waypointBufferDistance = 1f;
+    public float obstacleAvoidanceDistance = 5;
+    public float avoidanceTime = 2;
+    [HideInInspector] public float exitTime;
     public enum PatrolType { Stop, Loop, PingPong, Random}
     public PatrolType patrolType;
     [HideInInspector] public bool isPatrolling = true;
@@ -27,10 +30,8 @@ public class AIController : Controller
     //Statemachine
     public enum AIStates { Idle, Spin, AttackTarget}
     public AIStates currentState = AIStates.Idle;
-    public enum AIAvoidanceState { Normal, TurnToAvoid, MoveToAvoid}
-    public AIAvoidanceState currentAvoidState = AIAvoidanceState.Normal;
     public float lastStateChangeTime;
-    public float lastAvoidanceStateChangeTime;
+
 
     //Targetting and Senses
     public GameObject target;
@@ -43,7 +44,6 @@ public class AIController : Controller
 
     }
 
-    // Update is called once per frame
     public virtual void Update()
     {
         if(GameManager.instance.playerShipData == null)
@@ -60,25 +60,13 @@ public class AIController : Controller
         lastStateChangeTime = Time.time;
     }
 
-    public void ChangeAvoidanceState(AIAvoidanceState newState)
-    {
-        //Set the state
-        currentAvoidState = newState;
-        //save the time
-        lastAvoidanceStateChangeTime = Time.time;
-    }
-
-
-    public void AttackPlayer()
-    {
-        AttackTarget();
-    }
 
     public void TargetPlayer()
     {
         target = GameManager.instance.humanPlayers[0].data.gameObject;
     }
 
+    //Stops AI from doing anything
     public void Idle() { }
 
     public void Rotate()
@@ -109,12 +97,6 @@ public class AIController : Controller
             shooter.Shoot();
 
         }
-    }
-
-
-    public bool CanMoveForward(float distance)
-    {
-        return !Physics.Raycast(data.transform.position, data.transform.forward, distance);
     }
 
 
@@ -151,16 +133,12 @@ public class AIController : Controller
             return true;
         }
 
-        //TODO: Soundmaker check
-
         //Cannot hear
         return false;
     }
 
     public void Patrol()
     {
-        if (currentAvoidState == AIAvoidanceState.Normal)
-        {
             //Turn towards waypoint and move forward
             data.mover.MoveTo(waypoints[currentWaypointIndex].transform);
 
@@ -200,7 +178,6 @@ public class AIController : Controller
                     currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 1, waypoints.Count - 1);
                 }
             }
-        }
     }
 
     private void OnDrawGizmos()

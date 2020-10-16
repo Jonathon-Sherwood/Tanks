@@ -54,13 +54,7 @@ public class AI_SimpleController : AIController
                 }
                 break;
             case AIStates.AttackTarget:
-                AttackPlayer();
-
-                //Check for state change
-                if (!CanSee(target))
-                {
-                    ChangeState(AIStates.Spin);
-                }
+                AttackTarget();
                 break;
             default:
                 print("STATE NOT FOUND");
