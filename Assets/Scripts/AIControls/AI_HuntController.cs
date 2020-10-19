@@ -19,7 +19,19 @@ public class AI_HuntController : AIController
             GameManager.instance.aiPlayers.Remove(this);
             return;
         }
-        TargetPlayer();
-        AttackTarget();
+
+        if (GameManager.instance.playerShipData == null) //Prevents looking for player if there is none
+        {
+            return;
+        }
+
+        switch (currentState)
+        {
+            case AIStates.AttackTarget:
+                TargetPlayer();
+                AttackTarget();
+                break;
+        }
+
     }
 }

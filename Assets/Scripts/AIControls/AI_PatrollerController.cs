@@ -22,7 +22,6 @@ public class AI_PatrollerController : AIController
         switch (currentState)
         {
             case AIStates.Patrol:
-                TargetPlayer();
                 Patrol();
 
                 break;

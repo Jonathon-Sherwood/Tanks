@@ -63,7 +63,7 @@ public class AIController : Controller
 
     public void TargetPlayer()
     {
-        if(GameManager.instance.humanPlayers[0].data.gameObject != null)
+
         target = GameManager.instance.humanPlayers[0].data.gameObject;
     }
 
@@ -135,7 +135,7 @@ public class AIController : Controller
     public bool CanHear(GameObject target)
     {
         //Can hear
-        if(Vector3.Distance(target.transform.position, data.transform.position) < hearingSensitivity)
+        if(Vector3.Distance(target.transform.position, data.transform.position) < hearingSensitivity + target.GetComponent<ShipData>().noiseMaker)
         {
             return true;
         }
@@ -191,6 +191,25 @@ public class AIController : Controller
     {
 
         mover.MoveAway(target);
+    }
+
+    public bool PlayerCanSee(GameObject target)
+    {
+        //Stops breaking on null
+        if (target == null) { return false; }
+
+        //Starts the vector from the player ship
+        Vector3 vectorToTarget = data.transform.position - target.transform.position;
+        //Sets angle between player ship and this ship
+        float angle = Vector3.Angle(target.transform.forward, vectorToTarget);
+        //If player's angle is facing this ship and is nearby, flee
+        if (angle < fieldOfView && (Vector3.Distance(target.transform.position, data.transform.position) < viewDistance))
+        {
+            ChangeState(AIStates.Flee);
+            return true;
+        }
+
+        return false;
     }
 
     private void OnDrawGizmos()

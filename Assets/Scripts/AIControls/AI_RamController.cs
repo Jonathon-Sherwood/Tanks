@@ -50,23 +50,4 @@ public class AI_RamController : AIController
 
         }
     }
-
-    public bool PlayerCanSee(GameObject target)
-    {
-        //Stops breaking on null
-        if (target == null) { return false; }
-
-        //Starts the vector from the player ship
-        Vector3 vectorToTarget = data.transform.position - target.transform.position;
-        //Sets angle between player ship and this ship
-        float angle = Vector3.Angle(target.transform.forward, vectorToTarget);
-        //If player's angle is facing this ship and is nearby, flee
-        if (angle < fieldOfView && (Vector3.Distance(target.transform.position, data.transform.position) < viewDistance))
-        {
-            ChangeState(AIStates.Flee);
-            return true;
-        }
-        
-        return false;
-    }
 }

@@ -21,6 +21,7 @@ public class ShipData : MonoBehaviour
     public float crashDamage;
     public float maxHealth;
     public float scoreValue;
+    public float noiseMaker;
     [HideInInspector] public Mover mover;
 
     [Tooltip("Place controlling player here")] public GameObject owner;
