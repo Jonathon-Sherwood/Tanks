@@ -111,6 +111,49 @@ public class ShipMover : Mover
         transform.rotation = newRotation;
     }
 
+    public override void MoveAway(Transform targetTransform)
+    {
+        if (currentAvoidState == AIAvoidanceState.Normal)
+        {
+            Vector3 movement = transform.rotation * Vector3.forward;
+
+            //Rotate towards the opposite transform
+            RotateAway(targetTransform);
+
+            if (CanMoveForward(aiController.obstacleAvoidanceDistance))
+            {
+                //Move forward
+                rb.velocity = movement * data.forwardMoveSpeed * Time.deltaTime;
+            }
+            else
+            {
+                currentAvoidState = AIAvoidanceState.TurnToAvoid;
+            }
+        }
+        else
+        {
+            Avoidance();
+        }
+    }
+
+    public override void RotateAway(Transform targetTransform)
+    {
+        Vector3 targetPosition = targetTransform.position;
+        targetPosition.y = transform.position.y;
+
+        //Rotate away from target
+        Vector3 targetVector = targetPosition + transform.position;
+
+        //Find opposite rotation
+        Quaternion targetRotation = Quaternion.LookRotation(targetVector);
+
+        //Sets rotation
+        Quaternion newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, data.rotateSpeed * Time.deltaTime);
+
+        //Moves us towards new rotation
+        transform.rotation = newRotation;
+    }
+
     // DoAvoidance - handles obstacle avoidance
     void Avoidance()
     {

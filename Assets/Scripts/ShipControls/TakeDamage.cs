@@ -52,14 +52,4 @@ public class TakeDamage : MonoBehaviour
             }
         }
     }
-
-    //Will be implemented when rigidbody replaces character controller
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (!collision.rigidbody.CompareTag("Floor") && !collision.rigidbody.CompareTag("Ship"))
-        {
-            DamageTaken(data.crashDamage);
-            print(collision.gameObject.name);
-        }
-    }*/
 }

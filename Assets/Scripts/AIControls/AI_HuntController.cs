@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_PatrollerController : AIController
+public class AI_HuntController : AIController
 {
     // Start is called before the first frame update
     public override void Start()
@@ -19,13 +19,7 @@ public class AI_PatrollerController : AIController
             GameManager.instance.aiPlayers.Remove(this);
             return;
         }
-        switch (currentState)
-        {
-            case AIStates.Patrol:
-                TargetPlayer();
-                Patrol();
-
-                break;
-        }
+        TargetPlayer();
+        AttackTarget();
     }
 }

@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_SimpleController : AIController
+public class AI_ComplexController : AIController
 {
+    private void Awake()
+    {
+
+    }
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -25,15 +30,14 @@ public class AI_SimpleController : AIController
         }
         switch (currentState)
         {
-            case AIStates.Idle:
+            case AIStates.Patrol:
                 TargetPlayer();
-                Idle();
+                Patrol();
 
                 //Check for state change
                 if (CanSee(target))
                 {
                     ChangeState(AIStates.AttackTarget);
-
                 }
 
                 if (CanHear(target))
@@ -45,7 +49,6 @@ public class AI_SimpleController : AIController
 
             case AIStates.Spin:
                 Rotate();
-                TargetPlayer();
 
                 //Check for state change
                 if (CanSee(target))
@@ -57,7 +60,7 @@ public class AI_SimpleController : AIController
                 AttackTarget();
                 break;
             default:
-                print("STATE NOT FOUND");
+                Debug.LogWarning("STATE NOT FOUND");
                 currentState = AIStates.Idle;
                 break;
         }

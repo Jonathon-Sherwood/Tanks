@@ -28,7 +28,7 @@ public class AIController : Controller
     [HideInInspector] public bool isPatrolForward = true;
 
     //Statemachine
-    public enum AIStates { Idle, Spin, AttackTarget}
+    public enum AIStates { Idle, Spin, AttackTarget, Flee, Patrol}
     public AIStates currentState = AIStates.Idle;
     public float lastStateChangeTime;
 
@@ -63,6 +63,7 @@ public class AIController : Controller
 
     public void TargetPlayer()
     {
+        if(GameManager.instance.humanPlayers[0].data.gameObject != null)
         target = GameManager.instance.humanPlayers[0].data.gameObject;
     }
 
@@ -93,8 +94,11 @@ public class AIController : Controller
             //Move to target
             data.mover.MoveTo(target.transform);
 
-            //shoot
-            shooter.Shoot();
+            if (canShoot)
+            {
+                //shoot
+                Shoot();
+            }
 
         }
     }
@@ -113,16 +117,19 @@ public class AIController : Controller
 
         //Line of Sight Check
         RaycastHit hitInfo;
-        if(Physics.Raycast(data.transform.position, transform.forward, out hitInfo, viewDistance))
+        if (Physics.Raycast(data.transform.position, data.transform.forward, out hitInfo, viewDistance))
         {
             if (hitInfo.collider.gameObject != target)
             {
                 return false;
             }
+            else
+            {
+                //If made it through checks can see target
+                return true;
+            }
         }
-
-        //If made it through checks can see target
-        return true;
+        return false;
     }
 
     public bool CanHear(GameObject target)
@@ -180,8 +187,15 @@ public class AIController : Controller
             }
     }
 
+    public void Flee(Transform target)
+    {
+
+        mover.MoveAway(target);
+    }
+
     private void OnDrawGizmos()
     {
+        if(data != null)
         Gizmos.DrawSphere(data.transform.position, waypointBufferDistance);
     }
 
