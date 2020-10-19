@@ -135,7 +135,7 @@ public class AIController : Controller
     public bool CanHear(GameObject target)
     {
         //Can hear
-        if(Vector3.Distance(target.transform.position, data.transform.position) < hearingSensitivity + target.GetComponent<ShipData>().noiseMaker)
+        if(Vector3.Distance(target.transform.position, data.transform.position) < hearingSensitivity * target.GetComponent<ShipData>().noiseMaker)
         {
             return true;
         }

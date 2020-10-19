@@ -62,7 +62,10 @@ public class ShipMover : Mover
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, speed))
         {
-            return false;
+            if (!hit.collider.CompareTag("Ship")) //Does not trigger can't move on ships
+            {
+                return false;
+            }
         }
         // otherwise, return true
         return true;
