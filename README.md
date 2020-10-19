@@ -2,7 +2,7 @@
 
 Tank Personalities: 
 
-Red: Patrols until finding player. Chases indefinitely and shoots at afterward.
+Red: Patrols until it either hears the player from a noisemaker distance, or sees the player from a vision+ field of view. If they hear the player they spin, once they see they chase.
 
 Green: Patrols.
 
