@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerupManager :  MonoBehaviour
 {
     public List<Powerup> powerups;
+    private List<Powerup> toBeRemoved;
 
     private void Update()
     {
@@ -13,6 +14,8 @@ public class PowerupManager :  MonoBehaviour
 
     public void HandlePowerupExpiration()
     {
+        toBeRemoved = new List<Powerup>();
+
         foreach(Powerup pu in powerups)
         {
             pu.lifespan -= Time.deltaTime;
@@ -22,17 +25,27 @@ public class PowerupManager :  MonoBehaviour
                 RemovePowerup(pu);
             }
         }
+
+        foreach(Powerup pu in toBeRemoved)
+        {
+            powerups.Remove(pu);
+        }
     }
 
     public void AddPowerup(Powerup powerupToAdd)
     {
+        if (!powerupToAdd.isInfinite)
+        {
+            powerups.Add(powerupToAdd);
+        }
+
         powerupToAdd.OnPickup();
-        powerups.Add(powerupToAdd);
     }
 
     public void RemovePowerup(Powerup powerupToRemove)
     {
         powerupToRemove.OnExpire();
-        powerups.Remove(powerupToRemove);
+
+        toBeRemoved.Add(powerupToRemove);
     }
 }

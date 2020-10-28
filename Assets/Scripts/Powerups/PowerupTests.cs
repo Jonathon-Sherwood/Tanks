@@ -20,6 +20,7 @@ public class PowerupTests : MonoBehaviour
             HealthPowerup newHealthPowerup = new HealthPowerup();
             newHealthPowerup.amount = 100;
             newHealthPowerup.data = GetComponent<ShipData>();
+            newHealthPowerup.isInfinite = true;
             powerupManager.AddPowerup(newHealthPowerup);
         }
 
