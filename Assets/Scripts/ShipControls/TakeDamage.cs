@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TakeDamage : MonoBehaviour
 {
-    private float currentHealth;
-    ShipData data;
+    public float currentHealth;
+    public ShipData data;
 
     // Start is called before the first frame update
     void Start()

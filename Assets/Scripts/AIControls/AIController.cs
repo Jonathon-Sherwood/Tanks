@@ -211,11 +211,4 @@ public class AIController : Controller
 
         return false;
     }
-
-    private void OnDrawGizmos()
-    {
-        if(data != null)
-        Gizmos.DrawSphere(data.transform.position, waypointBufferDistance);
-    }
-
 }

@@ -23,6 +23,7 @@ public class ShipData : MonoBehaviour
     public float scoreValue;
     public float noiseMaker;
     [HideInInspector] public Mover mover;
+    [HideInInspector] public TakeDamage health;
 
     [Tooltip("Place controlling player here")] public GameObject owner;
     [Tooltip("Place cannonball from prefabs folder here")] public GameObject cannonballPrefab;
@@ -31,6 +32,7 @@ public class ShipData : MonoBehaviour
     private void Start()
     {
         mover = GetComponent<ShipMover>();
+        health = gameObject.GetComponent<TakeDamage>();
         GameManager.instance.shipList.Add(this);
     }
 

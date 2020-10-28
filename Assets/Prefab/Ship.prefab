@@ -798,6 +798,8 @@ GameObject:
   - component: {fileID: 7790735655102300596}
   - component: {fileID: -6364315053487326838}
   - component: {fileID: 8259337952052854169}
+  - component: {fileID: 6928876733651241559}
+  - component: {fileID: 2110155969395698534}
   - component: {fileID: 1326515963}
   - component: {fileID: 1716970637}
   m_Layer: 0
@@ -836,6 +838,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingForward: 0
+  currentAvoidState: 0
+  lastAvoidanceStateChangeTime: 0
 --- !u!114 &7790735655102300596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,6 +876,7 @@ MonoBehaviour:
   crashDamage: 1
   maxHealth: 1
   scoreValue: 300
+  noiseMaker: 0
   mover: {fileID: 0}
   owner: {fileID: 0}
   cannonballPrefab: {fileID: 3721200282337891447, guid: 8c54f921c98e91449be50b29321daa69,
@@ -887,6 +892,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21322e44b1c42ea49884079bfd479028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+--- !u!114 &6928876733651241559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021006403561118300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3221bcb3a5234b44a2255a90322bad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerups: []
+--- !u!114 &2110155969395698534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021006403561118300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb1fca53973cd4428688c7a924c86ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &1326515963
