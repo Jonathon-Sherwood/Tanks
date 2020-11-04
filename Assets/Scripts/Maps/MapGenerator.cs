@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
@@ -9,6 +10,11 @@ public class MapGenerator : MonoBehaviour
     public float tileWidth = 50.0f;
     public float tileHeight = 50.0f;
     public Room[,] rooms;
+
+    public int seed;
+
+    public bool useSeed;
+    public bool isMapOfTheDay;
 
     public Room[] roomTemplates;
 
@@ -26,6 +32,19 @@ public class MapGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
+        //If we have a seed, seed the random number generator
+        if (useSeed)
+        {
+            if (isMapOfTheDay)
+            {
+                DateTime today = DateTime.Today;
+                int dateNumber = (int)today.Ticks;
+                seed = dateNumber;
+            }
+
+            UnityEngine.Random.InitState(seed);
+        }
+
         //Create rooms array
         rooms = new Room[cols,rows];
 
@@ -46,6 +65,22 @@ public class MapGenerator : MonoBehaviour
                 // Save that room in the correct location in the array
                 rooms[currentCol, currentRow] = tempRoom.GetComponent<Room>();
                 // Open the appropriate doors 
+                if(currentRow != 0) //If not on the top row
+                {
+                    rooms[currentCol, currentRow].doorNorth.SetActive(false);
+                }
+                if (currentRow != rows - 1) //If not on the bottom row
+                {
+                    rooms[currentCol, currentRow].doorSouth.SetActive(false);
+                }
+                if (currentCol != 0) //If not on the first column
+                {
+                    rooms[currentCol, currentRow].doorWest.SetActive(false);
+                }
+                if (currentCol != cols - 1) //If not on the bottom row
+                {
+                    rooms[currentCol, currentRow].doorEast.SetActive(false);
+                }
             }
         }
 
@@ -53,7 +88,7 @@ public class MapGenerator : MonoBehaviour
 
     public Room GetRandomRoom()
     {
-        int randomNumber = Random.Range(0, roomTemplates.Length);
+        int randomNumber = UnityEngine.Random.Range(0, roomTemplates.Length);
         return roomTemplates[randomNumber];
     }
 
