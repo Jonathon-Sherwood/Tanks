@@ -7,8 +7,8 @@ public class MapGenerator : MonoBehaviour
 {
     public int rows;
     public int cols;
-    public float tileWidth = 50.0f;
-    public float tileHeight = 50.0f;
+    public float tileWidth = 2500.0f;
+    public float tileHeight = 2500.0f;
     public Room[,] rooms;
 
     public int seed;
