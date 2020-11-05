@@ -147,6 +147,7 @@ public class AIController : Controller
     public void Patrol()
     {
             //Turn towards waypoint and move forward
+            //if(data == null) { return; }
             data.mover.MoveTo(waypoints[currentWaypointIndex].transform);
 
             //If we are "close enough" to the waypoint, advance to the next waypoint
