@@ -30,11 +30,15 @@ public class ShipData : MonoBehaviour
     [Tooltip("Place cannonball from prefabs folder here")] public GameObject cannonballPrefab;
     [Tooltip("Place firepoint gameobject that cannons will fire from here")] public GameObject firePoint;
 
-    private void Start()
+    private void Awake()
     {
         mover = GetComponent<ShipMover>();
         shooter = GetComponent<ShipShooter>();
         health = gameObject.GetComponent<TakeDamage>();
+    }
+
+    private void Start()
+    {
         GameManager.instance.shipList.Add(this);
     }
 

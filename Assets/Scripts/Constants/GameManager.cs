@@ -44,21 +44,27 @@ public class GameManager : MonoBehaviour
 
         if(pauseOver == false) { pauseCountdown--; } //Brief pause to allow player to populate before AI looks for it
 
-        if(pauseCountdown < 0)
+        if(pauseCountdown < 0 && !pauseOver)
         {
-            foreach (AIController controller in aiPlayers) //Sets each AI's target to the spawned player
+            if (playerShipData.gameObject != null)
             {
-                controller.target = playerShipData.gameObject;
+                foreach (AIController controller in aiPlayers) //Sets each AI's target to the spawned player
+                {
+                    controller.target = playerShipData.gameObject;
+                }
+                pauseOver = true;
             }
-            pauseOver = true;
         }
     }
 
     public void RespawnPlayer() //Hooks the newly spawned ship to the human controller
     {
-        playerShipData = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity).gameObject.GetComponent<ShipData>();
-        playerShipData.mover = humanPlayers[0].mover.GetComponent<ShipMover>();
-        playerShipData.shooter = humanPlayers[0].shooter.GetComponent<ShipShooter>();
+        playerShipData = Instantiate(playerPrefab, new Vector3(0, 9, 0), Quaternion.identity).gameObject.GetComponent<ShipData>();
+        //playerShipData.mover = humanPlayers[0].mover.GetComponent<ShipMover>();
+        //playerShipData.shooter = humanPlayers[0].shooter.GetComponent<ShipShooter>();
         playerShipData.owner = humanPlayers[0].gameObject;
+        humanPlayers[0].mover = playerShipData.mover.GetComponent<ShipMover>();
+        humanPlayers[0].shooter = playerShipData.shooter.GetComponent<ShipShooter>();
+
     }
 }

@@ -14,19 +14,15 @@ public class HumanController : Controller
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.humanPlayers.Add(this);
+        //GameManager.instance.humanPlayers.Add(this);
     }
 
     // Update is called once per frame
     void Update()
     {
         if(data = null) { return; }
-        if (mover == null)
-        {
-            //Prevents crashes and removes player's ship from player list
-            GameManager.instance.humanPlayers.Remove(this);
-            return;
-        }
+
+        //if(data = null) { GameManager.instance.humanPlayers.Remove(this); }
 
         if(controlType == ControlType.WASD) //Set of controls based on using WASD keys
         {

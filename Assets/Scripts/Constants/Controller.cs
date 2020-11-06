@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    public ShipData data;
+    [HideInInspector]public ShipData data;
 }
