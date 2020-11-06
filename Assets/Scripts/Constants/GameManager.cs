@@ -57,8 +57,8 @@ public class GameManager : MonoBehaviour
     public void RespawnPlayer() //Hooks the newly spawned ship to the human controller
     {
         playerShipData = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity).gameObject.GetComponent<ShipData>();
-        humanPlayers[0].mover = playerShipData.mover.GetComponent<ShipMover>();
-        humanPlayers[0].shooter = playerShipData.shooter.GetComponent<ShipShooter>();
+        playerShipData.mover = humanPlayers[0].mover.GetComponent<ShipMover>();
+        playerShipData.shooter = humanPlayers[0].shooter.GetComponent<ShipShooter>();
         playerShipData.owner = humanPlayers[0].gameObject;
     }
 }
