@@ -59,6 +59,10 @@ public class AIController : Controller
             waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
             pauseOver = true;
         }
+        if(target == null)
+        {
+            target = GameManager.instance.playerShipData.gameObject;
+        }
     }
 
     public void ChangeState(AIStates newState)
@@ -222,5 +226,10 @@ public class AIController : Controller
         }
 
         return false;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.aiPlayers.Remove(this);
     }
 }

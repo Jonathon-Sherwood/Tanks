@@ -37,14 +37,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) //Test for respawning player
+        if (playerShipData == null) //Respawns player on death
         {
             pauseCountdown = pauseTime;
             pauseOver = false;
             RespawnPlayer();
         }
 
-        if (Input.GetKeyDown(KeyCode.O)) //Test for respawning player
+        if (aiPlayers.Count == 0) //Test for respawning player
         {
             SpawnAI();
         }
