@@ -16,7 +16,7 @@ public class AIController : Controller
     public bool canShoot = true; //Used in inspector to cancel shots outright
 
     //Waypoints and Movement
-    public List<Waypoint> waypoints; 
+    public GameObject[] waypoints; 
     private int currentWaypointIndex = 0;
     public float waypointBufferDistance = 1f;
     public float obstacleAvoidanceDistance = 5;
@@ -26,6 +26,9 @@ public class AIController : Controller
     public PatrolType patrolType;
     [HideInInspector] public bool isPatrolling = true;
     [HideInInspector] public bool isPatrolForward = true;
+    private int pauseTime = 10;
+    private float pauseCountdown;
+    private bool pauseOver = false;
 
     //Statemachine
     public enum AIStates { Idle, Spin, AttackTarget, Flee, Patrol}
@@ -41,7 +44,7 @@ public class AIController : Controller
 
     public virtual void Start()
     {
-
+        pauseCountdown = pauseTime;
     }
 
     public virtual void Update()
@@ -50,6 +53,17 @@ public class AIController : Controller
         {
             return;
         }
+        pauseCountdown--;
+        if (pauseCountdown < 0)
+        {
+            waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+            pauseOver = true;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        //waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
     }
 
     public void ChangeState(AIStates newState)
@@ -146,33 +160,34 @@ public class AIController : Controller
 
     public void Patrol()
     {
-            //Turn towards waypoint and move forward
-            //if(data == null) { return; }
+        if(pauseOver != true) { return; }   
+        //Turn towards waypoint and move forward
             data.mover.MoveTo(waypoints[currentWaypointIndex].transform);
 
             //If we are "close enough" to the waypoint, advance to the next waypoint
             if (Vector3.Distance(data.transform.position, waypoints[currentWaypointIndex].transform.position) < waypointBufferDistance)
             {
-                if (isPatrolForward)
+                if(patrolType == PatrolType.Random)
+                {
+                    currentWaypointIndex = Random.Range(0, waypoints.Length);
+                }
+
+                if (isPatrolForward && patrolType != PatrolType.Random)
                 {
                     currentWaypointIndex++;
                 }
-                else
+                else if (!isPatrolForward && patrolType != PatrolType.Random)
                 {
                     currentWaypointIndex--;
                 }
             }
 
             //Loop end
-            if (currentWaypointIndex >= waypoints.Count)
+            if (currentWaypointIndex >= waypoints.Length)
             {
                 if (patrolType == PatrolType.Loop) //Full Circle
                 {
                     currentWaypointIndex = 0;
-                }
-                else if (patrolType == PatrolType.Random) //Random waypoints
-                {
-                    currentWaypointIndex = Random.Range(0, waypoints.Count);
                 }
                 else if (patrolType == PatrolType.Stop) //Stop patrolling
                 {
@@ -183,7 +198,7 @@ public class AIController : Controller
                     isPatrolForward = !isPatrolForward;
 
                     //Keep waypoints within range
-                    currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 1, waypoints.Count - 1);
+                    currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 1, waypoints.Length - 1);
                 }
             }
     }

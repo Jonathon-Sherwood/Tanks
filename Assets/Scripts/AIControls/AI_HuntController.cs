@@ -13,6 +13,7 @@ public class AI_HuntController : AIController
     // Update is called once per frame
     public override void Update()
     {
+        base.Update();
         if (data == null)
         {
             //Prevents crashes and removes enemy from gamemanager list

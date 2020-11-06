@@ -357,15 +357,12 @@ MonoBehaviour:
   mover: {fileID: 7021006404791265349}
   fireFrequency: 3
   canShoot: 1
-  waypoints:
-  - {fileID: 2104189913}
-  - {fileID: 327354482}
-  - {fileID: 959684223}
-  waypointBufferDistance: 20
+  waypoints: []
+  waypointBufferDistance: 50
   obstacleAvoidanceDistance: 200
   avoidanceTime: 2
   exitTime: 0
-  patrolType: 1
+  patrolType: 3
   isPatrolling: 1
   isPatrolForward: 1
   currentState: 4
@@ -449,15 +446,12 @@ MonoBehaviour:
   mover: {fileID: 7021006405413526499}
   fireFrequency: 3
   canShoot: 1
-  waypoints:
-  - {fileID: 2104189913}
-  - {fileID: 327354482}
-  - {fileID: 959684223}
-  waypointBufferDistance: 1
+  waypoints: []
+  waypointBufferDistance: 50
   obstacleAvoidanceDistance: 200
   avoidanceTime: 2
   exitTime: 0
-  patrolType: 1
+  patrolType: 3
   isPatrolling: 1
   isPatrolForward: 1
   currentState: 4
@@ -500,7 +494,7 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: rotateSpeed
-      value: 200
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -2103,6 +2097,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: cannonballSpeed
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 963194228, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.26320463
@@ -2152,7 +2151,7 @@ PrefabInstance:
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 119
+      value: 993
       objectReference: {fileID: 0}
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -2162,7 +2161,7 @@ PrefabInstance:
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -218
+      value: -18
       objectReference: {fileID: 0}
     - target: {fileID: 7021006403561363958, guid: b00647846676f944383ecbced13cb368,
         type: 3}

@@ -12,12 +12,14 @@ public class AI_ComplexController : AIController
     // Start is called before the first frame update
     public override void Start()
     {
+        base.Start();
         GameManager.instance.aiPlayers.Add(this);
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        base.Update();
         if (data == null) //Removes from list and prevents crashing
         {
             GameManager.instance.aiPlayers.Remove(this);
