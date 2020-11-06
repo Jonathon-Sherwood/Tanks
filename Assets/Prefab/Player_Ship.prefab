@@ -929,7 +929,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7593810804555756992}
   m_LocalRotation: {x: -0, y: -0.4674815, z: -0, w: 0.88400286}
-  m_LocalPosition: {x: 993, y: 9, z: -18}
+  m_LocalPosition: {x: 0, y: 0, z: -180}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4282129527949777308}
@@ -991,6 +991,7 @@ MonoBehaviour:
   scoreValue: 300
   noiseMaker: 100
   mover: {fileID: 0}
+  shooter: {fileID: 0}
   health: {fileID: 0}
   owner: {fileID: 0}
   cannonballPrefab: {fileID: 3721200282337891447, guid: 8c54f921c98e91449be50b29321daa69,

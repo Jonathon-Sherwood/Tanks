@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance; //Allows all scripts to call this.
     public GameObject playerPrefab; //Used for spawning player
+    public GameObject[] aiPrefab; //Used for spawning AI
     public ShipData playerShipData;
     public List<HumanController> humanPlayers;
     public List<AIController> aiPlayers;
@@ -43,7 +44,12 @@ public class GameManager : MonoBehaviour
             RespawnPlayer();
         }
 
-        if(pauseOver == false) { pauseCountdown--; } //Brief pause to allow player to populate before AI looks for it
+        if (Input.GetKeyDown(KeyCode.O)) //Test for respawning player
+        {
+            SpawnAI();
+        }
+
+        if (pauseOver == false) { pauseCountdown--; } //Brief pause to allow player to populate before AI looks for it
 
         if(pauseCountdown < 0 && !pauseOver)
         {
@@ -66,5 +72,15 @@ public class GameManager : MonoBehaviour
         playerShipData.owner = humanPlayers[0].gameObject;
         humanPlayers[0].mover = playerShipData.mover.GetComponent<ShipMover>();
         humanPlayers[0].shooter = playerShipData.shooter.GetComponent<ShipShooter>();
+    }
+
+    public void SpawnAI()
+    {
+        GameObject[] aiSpawnPoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        foreach (GameObject ai in aiPrefab)
+        {
+            Transform spawnLocation = aiSpawnPoints[Random.Range(0, aiSpawnPoints.Length)].transform;
+            Instantiate(ai, new Vector3(spawnLocation.position.x, 9, spawnLocation.position.z), Quaternion.identity);   
+        }
     }
 }

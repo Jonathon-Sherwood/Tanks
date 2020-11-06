@@ -242,6 +242,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7593810804555756992, guid: f77ec98cf2fd4f242aae7d9fed9c34f5,
     type: 3}
+  aiPrefab:
+  - {fileID: 1900754318938931284, guid: ff09c74da6448a74d883eb0ec63364c5, type: 3}
+  - {fileID: 2505824600202878610, guid: 99496a1bde1abb74b9aba932e24fb432, type: 3}
+  - {fileID: 678522189205700124, guid: 3dbdf92e6730be04eaf8cfcf4b54de9f, type: 3}
+  - {fileID: 5237980326206933316, guid: f1634ad2ff301e54b9a8320169abbbd4, type: 3}
   playerShipData: {fileID: 0}
   humanPlayers:
   - {fileID: 1929746725}
