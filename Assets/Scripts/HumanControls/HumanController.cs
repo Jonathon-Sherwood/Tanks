@@ -5,7 +5,7 @@ using UnityEngine;
 public class HumanController : Controller
 {
     public ShipMover mover;
-    private ShipShooter shooter;
+    public ShipShooter shooter;
 
     public enum ControlType {WASD, ArrowKeys, Controller1, Controller2};
     public ControlType controlType;
@@ -14,13 +14,13 @@ public class HumanController : Controller
     // Start is called before the first frame update
     void Start()
     {
-        shooter = mover.gameObject.GetComponent<ShipShooter>();
         GameManager.instance.humanPlayers.Add(this);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(data = null) { return; }
         if (mover == null)
         {
             //Prevents crashes and removes player's ship from player list

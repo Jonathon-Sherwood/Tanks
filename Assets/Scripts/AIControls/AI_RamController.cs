@@ -7,6 +7,7 @@ public class AI_RamController : AIController
     // Start is called before the first frame update
     public override void Start()
     {
+        base.Start();
         GameManager.instance.aiPlayers.Add(this);
     }
 

@@ -19,7 +19,7 @@ public class ShipMover : Mover
     {
         data = GetComponent<ShipData>();
         rb = GetComponent<Rigidbody>();
-        aiController = data.owner.GetComponent<AIController>();
+        aiController = GetComponentInParent<AIController>();
     }
 
     public override void Update()

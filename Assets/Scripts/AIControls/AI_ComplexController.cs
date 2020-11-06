@@ -33,7 +33,6 @@ public class AI_ComplexController : AIController
         switch (currentState)
         {
             case AIStates.Patrol:
-                TargetPlayer();
                 Patrol();
 
                 //Check for state change

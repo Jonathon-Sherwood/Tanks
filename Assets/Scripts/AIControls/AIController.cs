@@ -61,11 +61,6 @@ public class AIController : Controller
         }
     }
 
-    private void LateUpdate()
-    {
-        //waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
-    }
-
     public void ChangeState(AIStates newState)
     {
         //Set the state
@@ -77,8 +72,7 @@ public class AIController : Controller
 
     public void TargetPlayer()
     {
-
-        target = GameManager.instance.humanPlayers[0].data.gameObject;
+        //target = GameManager.instance.humanPlayers[0].data.gameObject;
     }
 
     //Stops AI from doing anything
@@ -148,6 +142,7 @@ public class AIController : Controller
 
     public bool CanHear(GameObject target)
     {
+        if(target == null) { return false; }
         //Can hear
         if(Vector3.Distance(target.transform.position, data.transform.position) < hearingSensitivity * target.GetComponent<ShipData>().noiseMaker)
         {
@@ -160,47 +155,48 @@ public class AIController : Controller
 
     public void Patrol()
     {
-        if(pauseOver != true) { return; }   
+        if(pauseOver != true) { return; }  //Waits until waypoints have been populated to look for them
+
         //Turn towards waypoint and move forward
-            data.mover.MoveTo(waypoints[currentWaypointIndex].transform);
+        data.mover.MoveTo(waypoints[currentWaypointIndex].transform);
 
-            //If we are "close enough" to the waypoint, advance to the next waypoint
-            if (Vector3.Distance(data.transform.position, waypoints[currentWaypointIndex].transform.position) < waypointBufferDistance)
+        //If we are "close enough" to the waypoint, advance to the next waypoint
+        if (Vector3.Distance(data.transform.position, waypoints[currentWaypointIndex].transform.position) < waypointBufferDistance)
+        {
+            if(patrolType == PatrolType.Random)
             {
-                if(patrolType == PatrolType.Random)
-                {
-                    currentWaypointIndex = Random.Range(0, waypoints.Length);
-                }
-
-                if (isPatrolForward && patrolType != PatrolType.Random)
-                {
-                    currentWaypointIndex++;
-                }
-                else if (!isPatrolForward && patrolType != PatrolType.Random)
-                {
-                    currentWaypointIndex--;
-                }
+                currentWaypointIndex = Random.Range(0, waypoints.Length);
             }
 
-            //Loop end
-            if (currentWaypointIndex >= waypoints.Length)
+            if (isPatrolForward && patrolType != PatrolType.Random)
             {
-                if (patrolType == PatrolType.Loop) //Full Circle
-                {
-                    currentWaypointIndex = 0;
-                }
-                else if (patrolType == PatrolType.Stop) //Stop patrolling
-                {
-                    isPatrolling = false;
-                }
-                else if (patrolType == PatrolType.PingPong) //Start moving in the opposite direction
-                {
-                    isPatrolForward = !isPatrolForward;
-
-                    //Keep waypoints within range
-                    currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 1, waypoints.Length - 1);
-                }
+                currentWaypointIndex++;
             }
+            else if (!isPatrolForward && patrolType != PatrolType.Random)
+            {
+                currentWaypointIndex--;
+            }
+        }
+
+        //Loop end
+        if (currentWaypointIndex >= waypoints.Length)
+        {
+            if (patrolType == PatrolType.Loop) //Full Circle
+            {
+                currentWaypointIndex = 0;
+            }
+            else if (patrolType == PatrolType.Stop) //Stop patrolling
+            {
+                isPatrolling = false;
+            }
+            else if (patrolType == PatrolType.PingPong) //Start moving in the opposite direction
+            {
+                isPatrolForward = !isPatrolForward;
+
+                //Keep waypoints within range
+                currentWaypointIndex = Mathf.Clamp(currentWaypointIndex, 1, waypoints.Length - 1);
+            }
+        }
     }
 
     public void Flee(Transform target)

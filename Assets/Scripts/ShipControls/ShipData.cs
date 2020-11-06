@@ -23,6 +23,7 @@ public class ShipData : MonoBehaviour
     public float scoreValue;
     public float noiseMaker;
     [HideInInspector] public Mover mover;
+    [HideInInspector] public ShipShooter shooter;
     [HideInInspector] public TakeDamage health;
 
     [Tooltip("Place controlling player here")] public GameObject owner;
@@ -32,6 +33,7 @@ public class ShipData : MonoBehaviour
     private void Start()
     {
         mover = GetComponent<ShipMover>();
+        shooter = GetComponent<ShipShooter>();
         health = gameObject.GetComponent<TakeDamage>();
         GameManager.instance.shipList.Add(this);
     }
