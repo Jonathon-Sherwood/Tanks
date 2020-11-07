@@ -104,6 +104,12 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 5237980326206933316}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: chainshotPrefab
+      value: 
+      objectReference: {fileID: 5564106861810794712, guid: 2029c01fb870a8e498b96f5c53dc7c11,
+        type: 3}
     - target: {fileID: 1716970637, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_AngularDrag
       value: 61.97

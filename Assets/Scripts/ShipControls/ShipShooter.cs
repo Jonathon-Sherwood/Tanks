@@ -13,6 +13,7 @@ public class ShipShooter : MonoBehaviour
         data = GetComponent<ShipData>();
         shotsPerSecond = 60 / data.shotsPerSecond; //Becomes a time in comparison to a minute
         shotsPerSecond = shotsPerSecond / 60; //Turns the minute into shots per second
+        data.currentcannonPrefab = data.cannonballPrefab;
     }
 
     private void Update()
@@ -39,9 +40,9 @@ public class ShipShooter : MonoBehaviour
             countdown += shotsPerSecond + Time.deltaTime; //Restarts cooldown of shots per second
 
             //Parents this gameobject to the fired cannon both here and in the cannon script
-            GameObject cannon = Instantiate(data.cannonballPrefab, data.firePoint.transform.position, Quaternion.identity) as GameObject;
+            GameObject cannon = Instantiate(data.currentcannonPrefab, data.firePoint.transform.position, Quaternion.identity) as GameObject;
             Rigidbody cannonRB = cannon.GetComponent<Rigidbody>();
-            cannon.GetComponent<Cannonball>().spawnOrigin = gameObject;
+            cannon.GetComponent<Projectiles>().spawnOrigin = gameObject;
 
             //Launches cannon forward based on Shipdata value
             cannonRB.velocity = transform.TransformDirection(Vector3.forward * data.cannonballSpeed * Time.deltaTime);

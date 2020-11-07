@@ -28,6 +28,8 @@ public class ShipData : MonoBehaviour
 
     [Tooltip("Place controlling player here")] public GameObject owner;
     [Tooltip("Place cannonball from prefabs folder here")] public GameObject cannonballPrefab;
+    [Tooltip("Place chainshot from prefabs folder here")] public GameObject chainshotPrefab;
+    [HideInInspector] public GameObject currentcannonPrefab;
     [Tooltip("Place firepoint gameobject that cannons will fire from here")] public GameObject firePoint;
 
     private void Awake()

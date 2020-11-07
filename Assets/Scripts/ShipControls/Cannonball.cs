@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannonball : MonoBehaviour
+public class Cannonball : Projectiles
 {
-    public GameObject spawnOrigin; //Given a value by the ship that instantiates this
-    float damage; //Pulls from the ship that instantiates this
 
     // Start is called before the first frame update
     void Start()
