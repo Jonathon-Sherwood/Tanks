@@ -7,6 +7,7 @@ public class Powerup
 {
     public float amount = 100;
     public float lifespan = 5;
+    public int shots = 1;
     public bool isInfinite;
     public AudioClip soundEffect;
     public AudioClip expire;

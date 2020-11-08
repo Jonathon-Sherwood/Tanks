@@ -166,6 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5564106861810794710}
   - component: {fileID: 4675948244916881180}
+  - component: {fileID: 1879651368401896283}
   - component: {fileID: 3134140966997833019}
   - component: {fileID: 7741977887816433261}
   m_Layer: 0
@@ -204,9 +205,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bafd61bad9fb4c346b4f1337908ea71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinSpeed: 800
+  powerupData:
+    amount: 0
+    lifespan: 10
+    isInfinite: 0
+    soundEffect: {fileID: 0}
+    expire: {fileID: 0}
+    particle: {fileID: 0}
+    data: {fileID: 0}
+--- !u!114 &1879651368401896283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564106861810794712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2416fe2fc2cb81e439af82935696cbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   spawnOrigin: {fileID: 0}
   damage: 0
-  spinSpeed: 800
 --- !u!54 &3134140966997833019
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -978,7 +978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardMoveSpeed: 10000
-  maxSpeed: 100
+  maxSpeed: 10000
   backwardMoveSpeed: 2000
   rotateSpeed: 200
   shotsPerSecond: 1

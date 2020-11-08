@@ -11,6 +11,7 @@ public class ChainshotPowerup : Powerup
     public override void OnPickup()
     {
         data.currentcannonPrefab = data.chainshotPrefab;
+        shots++;
         base.OnPickup();
     }
 

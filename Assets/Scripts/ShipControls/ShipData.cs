@@ -7,9 +7,8 @@ using UnityEngine;
 /// </summary>
 public class ShipData : MonoBehaviour
 {
-    public float forwardMoveSpeed;
+    [HideInInspector] public float forwardMoveSpeed;
     public float maxSpeed;
-    public float backwardMoveSpeed;
     public float rotateSpeed;
     [Tooltip("Calculated at time of play. Tick 'Recalculate Shots Per Second' to update in realtime")]
     public float shotsPerSecond;
@@ -37,6 +36,7 @@ public class ShipData : MonoBehaviour
         mover = GetComponent<ShipMover>();
         shooter = GetComponent<ShipShooter>();
         health = gameObject.GetComponent<TakeDamage>();
+        forwardMoveSpeed = maxSpeed;
     }
 
     private void Start()

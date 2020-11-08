@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Projectiles : MonoBehaviour
 {
-    public GameObject spawnOrigin; //Given a value by the ship that instantiates this
-    public float damage; //Pulls from the ship that instantiates this
+    [HideInInspector]public GameObject spawnOrigin; //Given a value by the ship that instantiates this
+    [HideInInspector]public float damage; //Pulls from the ship that instantiates this
 }
