@@ -247,6 +247,7 @@ MonoBehaviour:
   - {fileID: 2505824600202878610, guid: 99496a1bde1abb74b9aba932e24fb432, type: 3}
   - {fileID: 678522189205700124, guid: 3dbdf92e6730be04eaf8cfcf4b54de9f, type: 3}
   - {fileID: 5237980326206933316, guid: f1634ad2ff301e54b9a8320169abbbd4, type: 3}
+  powerups: []
   playerShipData: {fileID: 0}
   humanPlayers:
   - {fileID: 1929746725}
@@ -361,7 +362,7 @@ MonoBehaviour:
   cols: 3
   tileWidth: 1000
   tileHeight: 1000
-  seed: 0
+  seed: 1
   useSeed: 0
   isMapOfTheDay: 0
   roomTemplates:
