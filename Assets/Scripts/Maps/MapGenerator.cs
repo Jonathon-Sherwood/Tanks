@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    //Rooms
     public int rows;
     public int cols;
     public float tileWidth = 2500.0f;
     public float tileHeight = 2500.0f;
     public Room[,] rooms;
 
+    //Seeds
     public int seed;
-
     public bool useSeed;
     public bool isMapOfTheDay;
 
@@ -35,7 +36,7 @@ public class MapGenerator : MonoBehaviour
         //If we have a seed, seed the random number generator
         if (useSeed)
         {
-            if (isMapOfTheDay)
+            if (isMapOfTheDay) //Uses date for seed if using map of the day
             {
                 DateTime today = DateTime.Today;
                 int dateNumber = (int)today.Ticks;
@@ -86,7 +87,8 @@ public class MapGenerator : MonoBehaviour
 
     }
 
-    public Room GetRandomRoom()
+    //Chooses a random room from the list of available rooms for generation
+    public Room GetRandomRoom() 
     {
         int randomNumber = UnityEngine.Random.Range(0, roomTemplates.Length);
         return roomTemplates[randomNumber];

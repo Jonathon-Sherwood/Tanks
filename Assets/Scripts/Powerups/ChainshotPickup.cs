@@ -12,7 +12,7 @@ public class ChainshotPickup : Pickup
         base.Update();
     }
 
-    public override void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other) //Adds this powerup to the list on pickup
     {
         PowerupManager test = other.gameObject.GetComponent<PowerupManager>();
         if (test != null)

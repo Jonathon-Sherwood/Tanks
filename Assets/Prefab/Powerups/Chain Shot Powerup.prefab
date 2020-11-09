@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 3263159090672877208}
   m_Layer: 0
   m_Name: Chain Shot Powerup
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -360,7 +360,7 @@ MonoBehaviour:
   spinSpeed: 180
   powerupData:
     amount: 1
-    lifespan: 500
+    lifespan: 10
     isInfinite: 0
     soundEffect: {fileID: 0}
     expire: {fileID: 0}

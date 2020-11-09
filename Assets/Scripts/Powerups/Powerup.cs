@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Powerup
 {
+    //List of adjustable elements for pickups
     public float amount = 100;
     public float lifespan = 5;
-    public int shots = 1;
     public bool isInfinite;
     public AudioClip soundEffect;
     public AudioClip expire;

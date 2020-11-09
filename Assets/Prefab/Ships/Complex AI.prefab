@@ -74,6 +74,9 @@ MonoBehaviour:
   currentState: 4
   lastStateChangeTime: 0
   target: {fileID: 0}
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 311
   fieldOfView: 60
   viewDistance: 500
   hearingSensitivity: 1

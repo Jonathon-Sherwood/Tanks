@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class HealthPowerup : Powerup
+public class SpeedPowerup : Powerup
 {
-    public TakeDamage health;
-
 
     public override void OnPickup()
     {
-        //Adds adjustable health to the ship
-        data.health.currentHealth += amount;
+        //Adds adjustable speed to ship movement
+        data.forwardMoveSpeed += amount;
         base.OnPickup();
     }
 
 
     public override void OnExpire()
     {
-        //removes adjustable health to the ship
-        data.health.currentHealth -= amount;
+        //removes adjustable speed to ship movement
+        data.forwardMoveSpeed -= amount;
         base.OnExpire();
     }
 }

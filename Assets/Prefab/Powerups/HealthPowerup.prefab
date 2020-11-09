@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4915489469989372865}
   m_Layer: 0
   m_Name: HealthPowerup
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,6 +139,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinSpeed: 180
+  powerupData:
+    amount: 100
+    lifespan: 0
+    isInfinite: 1
+    soundEffect: {fileID: 0}
+    expire: {fileID: 0}
+    particle: {fileID: 0}
+    data: {fileID: 0}
+    health: {fileID: 0}
 --- !u!1 &8135702559296131400
 GameObject:
   m_ObjectHideFlags: 0

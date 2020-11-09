@@ -7,17 +7,17 @@ public class ChainshotPowerup : Powerup
 {
     public TakeDamage health;
 
-    // Start is called before the first frame update
+
     public override void OnPickup()
     {
+        //Changes ships cannons from cannonballs to chainshot debuff shots
         data.currentcannonPrefab = data.chainshotPrefab;
-        shots++;
         base.OnPickup();
     }
 
-    // Update is called once per frame
     public override void OnExpire()
     {
+        //Reverts ships cannons back to cannonballs
         data.currentcannonPrefab = data.cannonballPrefab;
         base.OnExpire();
     }

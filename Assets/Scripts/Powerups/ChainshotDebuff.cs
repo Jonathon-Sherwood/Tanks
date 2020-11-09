@@ -5,16 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class ChainshotDebuff : Powerup
 {
-    // Start is called before the first frame update
+
     public override void OnPickup()
     {
+        //Halts movement
         data.forwardMoveSpeed = amount;
         base.OnPickup();
     }
 
-    // Update is called once per frame
+
     public override void OnExpire()
     {
+        //Returns movement to normal
         data.forwardMoveSpeed = data.maxSpeed;
         base.OnExpire();
     }

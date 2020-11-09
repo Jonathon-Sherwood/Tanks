@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance; //Allows all scripts to call this.
     public GameObject playerPrefab; //Used for spawning player
     public GameObject[] aiPrefab; //Used for spawning AI
+    public GameObject[] powerups; //Holds all powerups in the scene.
     public ShipData playerShipData;
     public List<HumanController> humanPlayers;
     public List<AIController> aiPlayers;
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
             RespawnPlayer();
         }
 
-        if (aiPlayers.Count == 0) //Test for respawning player
+        if (aiPlayers.Count == 0) //Spawns AI whenever the scene has none
         {
             SpawnAI();
         }
@@ -62,6 +63,8 @@ public class GameManager : MonoBehaviour
                 pauseOver = true;
             }
         }
+
+        powerups = GameObject.FindGameObjectsWithTag("Powerup"); //Populates a detectable list of all powerups in the scene
     }
 
     public void RespawnPlayer() //Hooks the newly spawned ship to the human controller
@@ -74,13 +77,13 @@ public class GameManager : MonoBehaviour
         humanPlayers[0].shooter = playerShipData.shooter.GetComponent<ShipShooter>();
     }
 
-    public void SpawnAI()
+    public void SpawnAI() //Creates one of each type of unique ai in random locations
     {
         GameObject[] aiSpawnPoints = GameObject.FindGameObjectsWithTag("Waypoint");
         foreach (GameObject ai in aiPrefab)
         {
             Transform spawnLocation = aiSpawnPoints[Random.Range(0, aiSpawnPoints.Length)].transform;
-            Instantiate(ai, new Vector3(spawnLocation.position.x, 9, spawnLocation.position.z), Quaternion.identity);   
+            Instantiate(ai, new Vector3(spawnLocation.position.x, 12, spawnLocation.position.z), Quaternion.identity);   
         }
     }
 }

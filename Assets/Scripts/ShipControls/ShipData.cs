@@ -24,6 +24,7 @@ public class ShipData : MonoBehaviour
     [HideInInspector] public Mover mover;
     [HideInInspector] public ShipShooter shooter;
     [HideInInspector] public TakeDamage health;
+    [HideInInspector] public PowerupManager powerupManager;
 
     [Tooltip("Place controlling player here")] public GameObject owner;
     [Tooltip("Place cannonball from prefabs folder here")] public GameObject cannonballPrefab;
@@ -36,6 +37,7 @@ public class ShipData : MonoBehaviour
         mover = GetComponent<ShipMover>();
         shooter = GetComponent<ShipShooter>();
         health = gameObject.GetComponent<TakeDamage>();
+        powerupManager = GetComponent<PowerupManager>();
         forwardMoveSpeed = maxSpeed;
     }
 
