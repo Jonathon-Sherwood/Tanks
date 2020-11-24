@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HumanController : Controller
 {
@@ -14,7 +15,8 @@ public class HumanController : Controller
     // Start is called before the first frame update
     void Start()
     {
-        //GameManager.instance.humanPlayers.Add(this);
+        DontDestroyOnLoad(this.gameObject);
+        GameManager.instance.humanPlayers.Add(this);
     }
 
     // Update is called once per frame
@@ -22,9 +24,7 @@ public class HumanController : Controller
     {
         if(data = null) { return; }
 
-        //if(data = null) { GameManager.instance.humanPlayers.Remove(this); }
-
-        if(controlType == ControlType.WASD) //Set of controls based on using WASD keys
+        if (controlType == ControlType.WASD) //Set of controls based on using WASD keys
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -62,13 +62,13 @@ public class HumanController : Controller
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 //Move Forward (+)
-                mover.movingForward = true;
+                mover.Move(true);
             }
 
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 //Move Backward (-)
-                mover.movingForward = false;
+                mover.Move(false);
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -81,6 +81,11 @@ public class HumanController : Controller
             {
                 //Rotate Clockwise (-)
                 mover.Rotate(true);
+            }
+
+            if(Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                shooter.Shoot();
             }
         }
 
