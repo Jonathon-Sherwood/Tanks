@@ -53,7 +53,7 @@ public class HumanController : Controller
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 //Shoots Cannon
-                shooter.Shoot();
+                if(shooter != null) shooter.Shoot();
             }
         }
 
@@ -85,7 +85,7 @@ public class HumanController : Controller
 
             if(Input.GetKeyDown(KeyCode.Mouse0))
             {
-                shooter.Shoot();
+                if (shooter != null) shooter.Shoot();
             }
         }
 

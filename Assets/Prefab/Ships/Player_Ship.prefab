@@ -979,7 +979,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardMoveSpeed: 10000
   maxSpeed: 10000
-  backwardMoveSpeed: 2000
   rotateSpeed: 200
   shotsPerSecond: 1
   recalculateShotsPerSecond: 0
@@ -993,6 +992,7 @@ MonoBehaviour:
   mover: {fileID: 0}
   shooter: {fileID: 0}
   health: {fileID: 0}
+  powerupManager: {fileID: 0}
   owner: {fileID: 0}
   cannonballPrefab: {fileID: 3721200282337891447, guid: 8c54f921c98e91449be50b29321daa69,
     type: 3}

@@ -280,6 +280,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 227628177933707717, guid: 79b7cd5be9ac24548a1e03923e6a1625,
+        type: 3}
+      propertyPath: controlType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 227628177933707718, guid: 79b7cd5be9ac24548a1e03923e6a1625,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3090,6 +3095,7 @@ MonoBehaviour:
   - {fileID: 678522189205700124, guid: 3dbdf92e6730be04eaf8cfcf4b54de9f, type: 3}
   powerups: []
   playerShipData: {fileID: 0}
+  player2ShipData: {fileID: 0}
   humanPlayers: []
   aiPlayers: []
   shipList: []

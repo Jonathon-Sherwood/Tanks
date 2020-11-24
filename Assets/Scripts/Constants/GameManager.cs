@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour
     public void IsOnePlayer()
     {
         isOnePlayer = true;
+        
     }
 
     public void IsTwoPlayer()
