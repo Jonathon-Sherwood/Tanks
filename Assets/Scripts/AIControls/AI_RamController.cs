@@ -21,7 +21,7 @@ public class AI_RamController : AIController
             GameManager.instance.aiPlayers.Remove(this);
             return;
         }
-        if (GameManager.instance.playerShipData == null) //Prevents looking for player if there is none
+        if (GameManager.instance.playerShipData == null && GameManager.instance.player2ShipData == null) //Prevents looking for player if there is none
         {
             return;
         }

@@ -61,7 +61,14 @@ public class AIController : Controller
         }
         if(target == null)
         {
-            target = GameManager.instance.playerShipData.gameObject;
+            if(GameManager.instance.playerShipData != null)
+            {
+                target = GameManager.instance.playerShipData.gameObject;
+            }
+            else
+            {
+                target = GameManager.instance.player2ShipData.gameObject;
+            }
         }
     }
 

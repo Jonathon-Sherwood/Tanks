@@ -21,7 +21,7 @@ public class AI_HuntController : AIController
             return;
         }
 
-        if (GameManager.instance.playerShipData == null) //Prevents looking for player if there is none
+        if (GameManager.instance.playerShipData == null && GameManager.instance.player2ShipData == null) //Prevents looking for player if there is none
         {
             return;
         }

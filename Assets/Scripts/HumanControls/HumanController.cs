@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HumanController : Controller
 {
@@ -11,7 +12,7 @@ public class HumanController : Controller
     public Camera playerCamera;
     public Camera radarCamera;
 
-    public enum ControlType {WASD, ArrowKeys, Controller1, Controller2};
+    public enum ControlType {WASD, ArrowKeys, Controller1, Controller2, Dead};
     public ControlType controlType;
 
 

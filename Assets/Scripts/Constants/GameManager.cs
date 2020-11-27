@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,10 +16,24 @@ public class GameManager : MonoBehaviour
     public List<AIController> aiPlayers;
     public List<ShipData> shipList; //This list is attached to ship objects that will fill this list.
     public GameObject[] playerSpawnPoints;
+    public float player1Score;
+    public float player2Score;
     private int pauseTime = 10;
     private float pauseCountdown;
     private bool pauseOver = true;
     [HideInInspector]public bool isOnePlayer = true;
+
+    //Death Canvases
+    public GameObject player1DeathScreen;
+    public GameObject player2DeathScreen;
+    public Text player1ScoreText;
+    public Text player2ScoreText;
+
+    //Game Reset
+    public int player1Lives = 3;
+    private bool player1Dead = false;
+    public int player2Lives = 3;
+    private bool player2Dead = false;
 
     private void Awake()
     {
@@ -46,12 +61,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (playerShipData == null) //Respawns player on death
-        {
-            pauseCountdown = pauseTime;
-            pauseOver = false;
-            RespawnPlayer1();
-        }
+        HandleDeath();
 
         if (aiPlayers.Count == 0) //Spawns AI whenever the scene has none
         {
@@ -72,13 +82,73 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(!isOnePlayer)
+        powerups = GameObject.FindGameObjectsWithTag("Powerup"); //Populates a detectable list of all powerups in the scene
+    }
+
+    /// <summary>
+    /// Contains the calls for respawning players and displaying score on death. Loads next scene on both max deaths.
+    /// </summary>
+    public void HandleDeath()
+    {
+        if (playerShipData == null && player1Lives > 0) //Respawns player on death
         {
-            if (player2ShipData == null) //Respawns player on death
+            pauseCountdown = pauseTime;
+            pauseOver = false;
+            RespawnPlayer1();
+            player1Lives--;
+        }
+        else if (playerShipData == null && player1Lives <= 0) //Locks player controls on max deaths
+        {
+            humanPlayers[0].controlType = HumanController.ControlType.Dead;
+            player1Score = humanPlayers[0].GetComponentInChildren<ScoreTracker>().currentScore;
+            player1Dead = true;
+        }
+
+        if (player1Dead && !isOnePlayer) //Displays final score on max deaths
+        {
+            player1DeathScreen.SetActive(true);
+            player1ScoreText.text = "Final Score: " + player1Score;
+        }
+
+        if (player2Dead) //Displays final score on max deaths
+        {
+            player2DeathScreen.SetActive(true);
+            player2ScoreText.text = "Final Score: " + player2Score;
+        }
+
+        if (!isOnePlayer) //If 2 player
+        {
+            //Once both players die, load game over
+            if (player1Dead && player2Dead && SceneManager.GetActiveScene().buildIndex != 2)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                player2DeathScreen.SetActive(false);
+                player1DeathScreen.SetActive(false);
+            }
+        }
+        else //If 1 player
+        {
+            if (player1Dead) //And player 1 max dies
+            {
+                //Load game over
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }
+
+        if (!isOnePlayer) //If 2 player
+        {
+            if (player2ShipData == null && player2Lives > 0) //Respawns player 2 on death
             {
                 pauseCountdown = pauseTime;
                 pauseOver = false;
                 RespawnPlayer2();
+                player2Lives--;
+            }
+            else if (player2ShipData == null && player2Lives <= 0) //Locks controls on max deaths
+            {
+                player2Dead = true;
+                humanPlayers[1].controlType = HumanController.ControlType.Dead;
+                player2Score = humanPlayers[1].GetComponentInChildren<ScoreTracker>().currentScore;
             }
 
             if (pauseOver == false) { pauseCountdown--; } //Brief pause to allow player to populate before AI looks for it
@@ -95,8 +165,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        powerups = GameObject.FindGameObjectsWithTag("Powerup"); //Populates a detectable list of all powerups in the scene
     }
 
     public void RespawnPlayer1() //Hooks the newly spawned ship to the human controller
@@ -111,6 +179,8 @@ public class GameManager : MonoBehaviour
         if (!isOnePlayer) //Sets the newly spawned ship's camera to split screen if multiplayer
         {
             playerShipData.gameObject.transform.GetChild(2).GetComponentInChildren<Camera>().rect = new Rect(0, .5f, 1, 1);
+
+            //Adjusts position of radar camera if two player mode
             playerShipData.gameObject.transform.GetChild(3).GetComponentInChildren<Camera>().rect = new Rect(-0.02f, .5f, .2f, 0.2f);
         }
     }
@@ -124,7 +194,6 @@ public class GameManager : MonoBehaviour
         humanPlayers[1].mover = player2ShipData.mover.GetComponent<ShipMover>();
         humanPlayers[1].shooter = player2ShipData.shooter.GetComponent<ShipShooter>();
         player2ShipData.gameObject.transform.GetChild(2).GetComponentInChildren<Camera>().rect = new Rect(0, 0, 1, .5f); //Sets the newly spawned ship's camera to half
-        //player2ShipData.gameObject.transform.GetChild(3).GetComponentInChildren<Camera>().rect = new Rect(0, 0, 0, 0);
     }
 
     public void SpawnAI() //Creates one of each type of unique ai in random locations

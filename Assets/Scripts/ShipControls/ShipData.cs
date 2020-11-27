@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// Master class that holds all data regarding stats for ships
@@ -32,6 +33,9 @@ public class ShipData : MonoBehaviour
     [HideInInspector] public GameObject currentcannonPrefab;
     [Tooltip("Place firepoint gameobject that cannons will fire from here")] public GameObject firePoint;
 
+    public GameObject scoreScreen;
+    public TMP_Text myScore;
+
     private void Awake()
     {
         mover = GetComponent<ShipMover>();
@@ -44,6 +48,10 @@ public class ShipData : MonoBehaviour
     private void Start()
     {
         GameManager.instance.shipList.Add(this);
+        if (owner.GetComponent<HumanController>() != null)
+        {
+            owner.GetComponent<ScoreTracker>().currentScoreText = myScore;
+        }
     }
 
     private void OnDestroy()
