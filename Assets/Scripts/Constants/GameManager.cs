@@ -110,7 +110,8 @@ public class GameManager : MonoBehaviour
 
         if (!isOnePlayer) //Sets the newly spawned ship's camera to split screen if multiplayer
         {
-            playerShipData.gameObject.GetComponentInChildren<Camera>().rect = new Rect(0, .5f, 1, 1);
+            playerShipData.gameObject.transform.GetChild(2).GetComponentInChildren<Camera>().rect = new Rect(0, .5f, 1, 1);
+            playerShipData.gameObject.transform.GetChild(3).GetComponentInChildren<Camera>().rect = new Rect(-0.02f, .5f, .2f, 0.2f);
         }
     }
 
@@ -122,7 +123,8 @@ public class GameManager : MonoBehaviour
         player2ShipData.owner = humanPlayers[1].gameObject;
         humanPlayers[1].mover = player2ShipData.mover.GetComponent<ShipMover>();
         humanPlayers[1].shooter = player2ShipData.shooter.GetComponent<ShipShooter>();
-        player2ShipData.gameObject.GetComponentInChildren<Camera>().rect = new Rect(0, 0, 1, .5f); //Sets the newly spawned ship's camera to half
+        player2ShipData.gameObject.transform.GetChild(2).GetComponentInChildren<Camera>().rect = new Rect(0, 0, 1, .5f); //Sets the newly spawned ship's camera to half
+        //player2ShipData.gameObject.transform.GetChild(3).GetComponentInChildren<Camera>().rect = new Rect(0, 0, 0, 0);
     }
 
     public void SpawnAI() //Creates one of each type of unique ai in random locations

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1497164957988529763}
   - component: {fileID: 6602276945094826486}
   - component: {fileID: 3966117506288501127}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpeedPickup
   m_TagString: Powerup
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 3865257695219214260}
   - component: {fileID: 3865257695218371332}
   - component: {fileID: 3865257695217348998}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: sail8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 3865257695219224404}
   - component: {fileID: 3865257695218410370}
   - component: {fileID: 3865257695217049204}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: mast3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,6 +8,9 @@ public class HumanController : Controller
     public ShipMover mover;
     public ShipShooter shooter;
 
+    public Camera playerCamera;
+    public Camera radarCamera;
+
     public enum ControlType {WASD, ArrowKeys, Controller1, Controller2};
     public ControlType controlType;
 
