@@ -30,9 +30,10 @@ public class GameManager : MonoBehaviour
     public Text player2ScoreText;
 
     //Game Reset
-    public int player1Lives = 3;
+    public int maxLives = 3;
+    private int player1Lives = 3;
     private bool player1Dead = false;
-    public int player2Lives = 3;
+    private int player2Lives = 3;
     private bool player2Dead = false;
 
     private void Awake()
@@ -51,7 +52,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        player1Lives = maxLives;
+        player2Lives = maxLives;
     }
 
     private void Update()
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        InstantKill();
         HandleDeath();
 
         if (aiPlayers.Count == 0) //Spawns AI whenever the scene has none
@@ -209,12 +212,22 @@ public class GameManager : MonoBehaviour
     public void IsOnePlayer()
     {
         isOnePlayer = true;
-        
     }
 
     public void IsTwoPlayer()
     {
         isOnePlayer = false;
+    }
+
+    public void InstantKill()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            foreach(HumanController player in humanPlayers)
+            {
+                Destroy(player.mover.gameObject);
+            }
+        }
     }
 
 }
