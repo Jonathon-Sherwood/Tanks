@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     private int player2Lives = 3;
     private bool player2Dead = false;
 
+    //Saves
+    public SaveData saveData;
+
     private void Awake()
     {
         //Turns the gamemanager into a singleton.
@@ -48,6 +51,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        saveData.LoadFromPlayerPrefs();
     }
 
     private void Start()

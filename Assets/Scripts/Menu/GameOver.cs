@@ -7,9 +7,9 @@ public class GameOver : MonoBehaviour
 {
     public Text playerScoreInput;
     public InputField playerNames;
-    public HighScoreList highscoreList;
     public SaveData saveData;
     public GameObject highScoreScreen;
+    public HighScoreList highScoreList;
     private bool firstInput = true;
     [HideInInspector] public string player1Name;
     [HideInInspector] public string player2Name;
@@ -22,7 +22,8 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        saveData = GameManager.instance.saveData;
+        highScoreList = saveData.highScores;
     }
 
     public void Name()
@@ -64,24 +65,18 @@ public class GameOver : MonoBehaviour
         playerScoreInput.gameObject.SetActive(false);
         highScoreScreen.SetActive(true);
 
-        Highscores player3Score = new Highscores();
-        player3Score.playerName = "Jonathon";
-        player3Score.score = 50000;
-        scores.Add(player3Score);
-
-        Highscores robo1Score = new Highscores();
-        robo1Score.playerName = "Robo 1";
-        robo1Score.score = 50;
-        scores.Add(robo1Score);
-
-        Highscores robo2Score = new Highscores();
-        robo2Score.playerName = "Robo 2";
-        robo2Score.score = 500;
-        scores.Add(robo2Score);
+        scores.Add(highScoreList.highScores[0]);
+        scores.Add(highScoreList.highScores[1]);
+        scores.Add(highScoreList.highScores[2]);
 
         scores.Sort();
-        scores.GetRange(0, 2);
         scores.Reverse();
+        scores.GetRange(0, 2);
+
+        highScoreList.highScores.Clear();
+        highScoreList.highScores.Add(scores[0]);
+        highScoreList.highScores.Add(scores[1]);
+        highScoreList.highScores.Add(scores[2]);
 
         highScorePlayerNames[0].text = scores[0].score.ToString();
         highScorePlayerScores[0].text = scores[0].playerName;
@@ -92,7 +87,8 @@ public class GameOver : MonoBehaviour
         highScorePlayerNames[2].text = scores[3].score.ToString();
         highScorePlayerScores[2].text = scores[3].playerName;
 
-        //saveData.HighScoreToString(highscoreList);
+        saveData.HighScoreToString(highScoreList);
+        saveData.SaveToPlayerPrefs();
     }
 
     // Update is called once per frame
