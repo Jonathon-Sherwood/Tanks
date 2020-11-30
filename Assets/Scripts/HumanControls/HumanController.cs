@@ -15,6 +15,8 @@ public class HumanController : Controller
     public enum ControlType {WASD, ArrowKeys, Controller1, Controller2, Dead};
     public ControlType controlType;
 
+    public int lives;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,8 @@ public class HumanController : Controller
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+
         if(data = null) { return; }
 
         if (controlType == ControlType.WASD) //Set of controls based on using WASD keys

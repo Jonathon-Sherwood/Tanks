@@ -35,6 +35,7 @@ public class ShipData : MonoBehaviour
 
     public GameObject scoreScreen;
     public TMP_Text myScore;
+    public TMP_Text myLives;
 
     private void Awake()
     {
@@ -51,6 +52,7 @@ public class ShipData : MonoBehaviour
         if (owner.GetComponent<HumanController>() != null)
         {
             owner.GetComponent<ScoreTracker>().currentScoreText = myScore;
+            owner.GetComponent<ScoreTracker>().currentLivesText = myLives;
         }
     }
 

@@ -25,6 +25,8 @@ public class TakeDamage : MonoBehaviour
     //Destroys this gameobject once health reaches 0
     private void Die()
     {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, GameManager.instance.sfxAudio);
         Destroy(this.gameObject);
     }
 

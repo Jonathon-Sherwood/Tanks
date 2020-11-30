@@ -22,6 +22,8 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        useSeed = GameManager.instance.isMapOfTheDay;
+        isMapOfTheDay = GameManager.instance.isMapOfTheDay;
         GenerateMap();
     }
 

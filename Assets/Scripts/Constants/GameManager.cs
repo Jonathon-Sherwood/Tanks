@@ -21,7 +21,11 @@ public class GameManager : MonoBehaviour
     private int pauseTime = 10;
     private float pauseCountdown;
     private bool pauseOver = true;
-    [HideInInspector]public bool isOnePlayer = true;
+    [HideInInspector]public bool isOnePlayer;
+
+    public bool isMapOfTheDay;
+
+    public float sfxAudio;
 
     //Death Canvases
     public GameObject player1DeathScreen;
@@ -38,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     //Saves
     public SaveData saveData;
+    public int onePlayer;
+    public int mapOfTheDay;
 
     private void Awake()
     {
@@ -51,7 +57,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
         saveData.LoadFromPlayerPrefs();
     }
 
@@ -59,17 +64,28 @@ public class GameManager : MonoBehaviour
     {
         player1Lives = maxLives;
         player2Lives = maxLives;
+        onePlayer = isOnePlayer ? 1 : 0;
+        mapOfTheDay = isMapOfTheDay ? 1 : 0;
     }
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex != 1) //Stops the gamemanager from running game related scripts off the game scene
+        //Converts bool to int for saving
+        if (isOnePlayer) { onePlayer = 1; }
+        else if (!isOnePlayer) { onePlayer = 0; }
+
+        //Converts bool to int for saving
+        if (isMapOfTheDay) { mapOfTheDay = 1; }
+        else if (!isMapOfTheDay) { mapOfTheDay = 0; }
+
+
+        if (SceneManager.GetActiveScene().buildIndex != 1) //Stops the gamemanager from running game related scripts off the game scene
         {
             return;
         }
 
-        InstantKill();
-        HandleDeath();
+        InstantKill(); //Used to kill players for testing highscores
+        HandleDeath(); //Organizes all death related functions
 
         if (aiPlayers.Count == 0) //Spawns AI whenever the scene has none
         {
@@ -98,6 +114,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void HandleDeath()
     {
+        humanPlayers[0].lives = player1Lives;
+
         if (playerShipData == null && player1Lives > 0) //Respawns player on death
         {
             pauseCountdown = pauseTime;
@@ -126,6 +144,7 @@ public class GameManager : MonoBehaviour
 
         if (!isOnePlayer) //If 2 player
         {
+            humanPlayers[1].lives = player2Lives;
             //Once both players die, load game over
             if (player1Dead && player2Dead && SceneManager.GetActiveScene().buildIndex != 2)
             {
@@ -214,16 +233,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void IsOnePlayer()
-    {
-        isOnePlayer = true;
-    }
-
-    public void IsTwoPlayer()
-    {
-        isOnePlayer = false;
-    }
-
+    //Used for quickly moving to the end screen 
     public void InstantKill()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -234,5 +244,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
 }

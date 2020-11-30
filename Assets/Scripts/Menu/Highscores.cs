@@ -9,6 +9,7 @@ public class Highscores : IComparable<Highscores>
     public string playerName;
     public float score;
 
+    //Stacks scores based on highest
     public int CompareTo(Highscores other)
     {
         if (other == null)
@@ -30,5 +31,5 @@ public class Highscores : IComparable<Highscores>
 [System.Serializable]
 public class HighScoreList
 {
-    public List<Highscores> highScores;
+    public List<Highscores> highScores; //Holds a list of all highscores
 }

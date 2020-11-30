@@ -17,6 +17,8 @@ public class HealthPickup : Pickup
         PowerupManager test = other.gameObject.GetComponent<PowerupManager>();
         if(test != null)
         {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, GameManager.instance.sfxAudio);
             powerupData.data = other.GetComponent<ShipData>();
             test.AddPowerup(powerupData);
             Destroy(gameObject);
