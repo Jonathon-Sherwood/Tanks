@@ -30,6 +30,8 @@ public class ShipMover : Mover
     //Takes in a value from controllers to move towards
     public override void Move(bool movingForward)
     {
+        if(data == null) { return; }
+
         Vector3 movement = transform.rotation * Vector3.forward;
 
         if (movingForward)

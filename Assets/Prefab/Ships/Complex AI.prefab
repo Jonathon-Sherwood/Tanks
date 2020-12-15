@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScore: 0
   currentScoreText: {fileID: 0}
+  currentLivesText: {fileID: 0}
 --- !u!114 &1900754318938931286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +151,8 @@ MonoBehaviour:
   patrolType: 3
   isPatrolling: 1
   isPatrolForward: 1
+  stopDistance: 200
+  originalSpeed: 0
   currentState: 4
   lastStateChangeTime: 0
   target: {fileID: 0}
@@ -263,7 +266,7 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: maxHealth
-      value: 13
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -293,7 +296,7 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: rotateSpeed
-      value: 50
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}

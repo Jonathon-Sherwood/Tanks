@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScore: 0
   currentScoreText: {fileID: 0}
+  currentLivesText: {fileID: 0}
 --- !u!114 &5237980326206933319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +295,7 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: maxHealth
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1716970637, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_AngularDrag

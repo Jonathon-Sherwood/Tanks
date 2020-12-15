@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class AI_HuntController : AIController
 {
+
     // Start is called before the first frame update
     public override void Start()
     {
         GameManager.instance.aiPlayers.Add(this);
+        originalSpeed = data.forwardMoveSpeed;
     }
 
     // Update is called once per frame
@@ -34,5 +36,6 @@ public class AI_HuntController : AIController
                 break;
         }
 
+        StoppingDistance();
     }
 }

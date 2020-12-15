@@ -29,6 +29,9 @@ public class AIController : Controller
     private int pauseTime = 10;
     private float pauseCountdown;
     private bool pauseOver = false;
+    public float stopDistance;
+    [HideInInspector] public float originalSpeed;
+    bool stopped;
 
     //Statemachine
     public enum AIStates { Idle, Spin, AttackTarget, Flee, Patrol}
@@ -41,6 +44,7 @@ public class AIController : Controller
     public float fieldOfView = 60f;
     public float viewDistance = 10f;
     public float hearingSensitivity = 1f;
+
 
     public virtual void Start()
     {
@@ -233,6 +237,24 @@ public class AIController : Controller
         }
 
         return false;
+    }
+
+    public void StoppingDistance()
+    {
+        //As the ship reaches a certain distance from its target...
+        if ((Vector3.Distance(target.transform.position, data.transform.position) < stopDistance))
+        {
+            //...Stop moving
+            data.forwardMoveSpeed = 0;
+            stopped = true;
+        }
+        //The moment the target leaves range...
+        else if ((Vector3.Distance(target.transform.position, data.transform.position) > stopDistance) && stopped)
+        {
+            //...Return to original speed
+            data.forwardMoveSpeed = originalSpeed;
+            stopped = false;
+        }
     }
 
     private void OnDestroy()

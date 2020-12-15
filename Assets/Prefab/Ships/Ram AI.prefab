@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScore: 0
   currentScoreText: {fileID: 0}
+  currentLivesText: {fileID: 0}
 --- !u!114 &678522189205700127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +157,7 @@ MonoBehaviour:
   fieldOfView: 30
   viewDistance: 500
   hearingSensitivity: 1
+  stopDistance: 30
 --- !u!82 &2821065313877134165
 AudioSource:
   m_ObjectHideFlags: 0
@@ -273,7 +275,7 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: rotateSpeed
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -289,7 +291,7 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: maxSpeed
-      value: 2000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}

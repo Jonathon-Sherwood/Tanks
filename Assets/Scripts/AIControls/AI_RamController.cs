@@ -9,6 +9,7 @@ public class AI_RamController : AIController
     {
         base.Start();
         GameManager.instance.aiPlayers.Add(this);
+        originalSpeed = data.forwardMoveSpeed;
     }
 
     // Update is called once per frame
@@ -32,6 +33,7 @@ public class AI_RamController : AIController
             case AIStates.AttackTarget:
                 TargetPlayer();
                 AttackTarget();
+                StoppingDistance();
 
                 //Check for state change
                 if (PlayerCanSee(target))
@@ -49,7 +51,6 @@ public class AI_RamController : AIController
                     ChangeState(AIStates.AttackTarget);
                 }
                 break;
-
         }
     }
 }

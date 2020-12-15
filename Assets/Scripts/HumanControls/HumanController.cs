@@ -29,7 +29,7 @@ public class HumanController : Controller
     void Update()
     { 
 
-        if(data = null) { return; }
+        if(mover == null) { return; }
 
         if (controlType == ControlType.WASD) //Set of controls based on using WASD keys
         {

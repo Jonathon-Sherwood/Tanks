@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScore: 0
   currentScoreText: {fileID: 0}
+  currentLivesText: {fileID: 0}
 --- !u!114 &2505824600202878611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +73,8 @@ MonoBehaviour:
   patrolType: 0
   isPatrolling: 1
   isPatrolForward: 1
+  stopDistance: 200
+  originalSpeed: 0
   currentState: 2
   lastStateChangeTime: 0
   target: {fileID: 0}
@@ -273,7 +276,7 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: rotateSpeed
-      value: 200
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -283,7 +286,7 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: maxHealth
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -294,7 +297,12 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: maxSpeed
-      value: 2000
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: shotsPerSecond
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1716970637, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_AngularDrag

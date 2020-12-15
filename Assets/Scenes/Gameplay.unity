@@ -193,7 +193,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8.724507e-39, y: 8.816344e-39, z: 9.091851e-39, w: 9.091854e-39}
+  m_BoundingSphereOverride: {x: 7e-45, y: 1.1e-44, z: 1e-44, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -377,16 +377,12 @@ MonoBehaviour:
   useSeed: 0
   isMapOfTheDay: 0
   roomTemplates:
-  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
-  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
-  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
-  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
-  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
-  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
-  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
   - {fileID: 11411052, guid: c87c024ddc8cbcb43a96df48a8153d02, type: 3}
   - {fileID: 11411052, guid: 7323b30dfd97c4943bc7251b26ba0bd1, type: 3}
   - {fileID: 11411052, guid: 3e66fc7b64605b34a9bb0d768176fdf1, type: 3}
+  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
+  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
+  - {fileID: 11411052, guid: 41d4243be8ad3a5409422171976de7ff, type: 3}
 --- !u!4 &2025577129
 Transform:
   m_ObjectHideFlags: 0

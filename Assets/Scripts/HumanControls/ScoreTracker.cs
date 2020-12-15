@@ -18,6 +18,6 @@ public class ScoreTracker : MonoBehaviour
 
         if (currentLivesText == null) { return; }
         int displayedLives = GetComponent<HumanController>().lives + 1;
-        currentLivesText.text = "Lives: " + displayedLives;
+        currentLivesText.text = "" + displayedLives;
     }
 }

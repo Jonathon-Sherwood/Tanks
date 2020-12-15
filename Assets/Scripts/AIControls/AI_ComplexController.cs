@@ -14,6 +14,7 @@ public class AI_ComplexController : AIController
     {
         base.Start();
         GameManager.instance.aiPlayers.Add(this);
+        originalSpeed = data.forwardMoveSpeed;
     }
 
     // Update is called once per frame
@@ -59,6 +60,7 @@ public class AI_ComplexController : AIController
                 break;
             case AIStates.AttackTarget:
                 AttackTarget();
+                StoppingDistance();
                 break;
             default:
                 Debug.LogWarning("STATE NOT FOUND");

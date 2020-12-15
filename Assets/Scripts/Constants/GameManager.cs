@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
     {
         player1Lives = maxLives;
         player2Lives = maxLives;
+
+        //Sets the values based on saved numbers from savedata
         onePlayer = isOnePlayer ? 1 : 0;
         mapOfTheDay = isMapOfTheDay ? 1 : 0;
     }
