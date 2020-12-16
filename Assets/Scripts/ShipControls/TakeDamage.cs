@@ -27,6 +27,7 @@ public class TakeDamage : MonoBehaviour
     {
         AudioSource audioSource = GetComponent<AudioSource>();
         AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, GameManager.instance.sfxAudio);
+        Instantiate(data.explosionPrefab, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 

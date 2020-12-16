@@ -6,4 +6,5 @@ public class Projectiles : MonoBehaviour
 {
     [HideInInspector]public GameObject spawnOrigin; //Given a value by the ship that instantiates this
     [HideInInspector]public float damage; //Pulls from the ship that instantiates this
+    public GameObject shrapnelPrefab; //Shows the player they have been hit
 }

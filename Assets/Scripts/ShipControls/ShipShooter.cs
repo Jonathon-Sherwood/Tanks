@@ -41,6 +41,7 @@ public class ShipShooter : MonoBehaviour
 
             //Parents this gameobject to the fired cannon both here and in the cannon script
             GameObject cannon = Instantiate(data.currentcannonPrefab, data.firePoint.transform.position, Quaternion.identity) as GameObject;
+            data.smokePrefab.GetComponent<ParticleSystem>().Play();
             Rigidbody cannonRB = cannon.GetComponent<Rigidbody>();
             cannon.GetComponent<Projectiles>().spawnOrigin = gameObject;
 

@@ -170,6 +170,8 @@ MonoBehaviour:
   patrolType: 3
   isPatrolling: 1
   isPatrolForward: 1
+  stopDistance: 0
+  originalSpeed: 0
   currentState: 4
   lastStateChangeTime: 0
   target: {fileID: 0}
@@ -297,6 +299,18 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 4945452911881270527, guid: 630b4b3be1aabe9479619aebc9e61609,
+        type: 3}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: smokePrefab
+      value: 
+      objectReference: {fileID: 4945452911881270527, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
     - target: {fileID: 1716970637, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_AngularDrag
       value: 61.97

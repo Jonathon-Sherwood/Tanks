@@ -229,6 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnOrigin: {fileID: 0}
   damage: 0
+  shrapnelPrefab: {fileID: 3457339426578451329, guid: ea8015c14053a334596d57c1377de4b4,
+    type: 3}
   fire: {fileID: 8300000, guid: 4c1627258929d5d4c80603eb6e9ea05f, type: 3}
   impact: {fileID: 8300000, guid: d11b65262179b634499b2b3d5e5fafe7, type: 3}
 --- !u!54 &3134140966997833019

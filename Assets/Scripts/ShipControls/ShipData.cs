@@ -32,6 +32,8 @@ public class ShipData : MonoBehaviour
     [Tooltip("Place chainshot from prefabs folder here")] public GameObject chainshotPrefab;
     [HideInInspector] public GameObject currentcannonPrefab;
     [Tooltip("Place firepoint gameobject that cannons will fire from here")] public GameObject firePoint;
+    [Tooltip("Place explosion particle effect from prefabs folder here")] public GameObject explosionPrefab;
+    [Tooltip("Place smoke particle effect from prefabs folder here")] public GameObject smokePrefab;
 
     public GameObject scoreScreen;
     public TMP_Text myScore;

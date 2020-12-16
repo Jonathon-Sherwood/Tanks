@@ -40,27 +40,49 @@ public class AI_ComplexController : AIController
                 if (CanSee(target))
                 {
                     ChangeState(AIStates.AttackTarget);
+
                 }
 
                 if (CanHear(target))
                 {
                     ChangeState(AIStates.Spin);
+                    lastStateChangeTime = Time.time;
                 }
                 break;
 
 
             case AIStates.Spin:
                 Rotate();
-
                 //Check for state change
                 if (CanSee(target))
                 {
                     ChangeState(AIStates.AttackTarget);
                 }
+
+                //Returns to patrol after not finding the player
+                if(Time.time > lastStateChangeTime + searchTime)
+                {
+                    ChangeState(AIStates.Patrol);
+                }
                 break;
             case AIStates.AttackTarget:
                 AttackTarget();
                 StoppingDistance();
+
+                //If I cannot see the player...
+                if(CanSee(target))
+                {
+                    //...Start the countdown
+                    lastStateChangeTime = Time.time;
+                }
+                //If the countdown is up...
+                if (Time.time > lastStateChangeTime + chaseTime)
+                {
+                    //...Return to spin
+                    ChangeState(AIStates.Spin);
+                    lastStateChangeTime = Time.time;
+                }
+
                 break;
             default:
                 Debug.LogWarning("STATE NOT FOUND");

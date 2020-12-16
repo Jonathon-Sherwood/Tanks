@@ -21,6 +21,10 @@ public class Cannonball : Projectiles
     {
         audioSource.clip = impact;
         AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, GameManager.instance.sfxAudio);
+        if(other.CompareTag("Ship"))
+        {
+            Instantiate(shrapnelPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(this.gameObject);
     }
 }

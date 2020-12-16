@@ -256,6 +256,96 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1001 &540019162859850392
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4875667845296544641}
+    m_Modifications:
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.12217474
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99250865
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 66.065
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7100511
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.710051
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270520, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7100511
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270527, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: m_Name
+      value: Smoke
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3497dfd17756724cac3fa1b1397d481, type: 3}
+--- !u!1 &4890715311444131431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4945452911881270527, guid: e3497dfd17756724cac3fa1b1397d481,
+    type: 3}
+  m_PrefabInstance: {fileID: 540019162859850392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2505824600591778423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,6 +394,17 @@ PrefabInstance:
       propertyPath: shotsPerSecond
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 4945452911881270527, guid: 630b4b3be1aabe9479619aebc9e61609,
+        type: 3}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: smokePrefab
+      value: 
+      objectReference: {fileID: 4890715311444131431}
     - target: {fileID: 1716970637, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_AngularDrag
       value: 61.97

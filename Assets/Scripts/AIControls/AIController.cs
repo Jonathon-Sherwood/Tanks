@@ -36,7 +36,9 @@ public class AIController : Controller
     //Statemachine
     public enum AIStates { Idle, Spin, AttackTarget, Flee, Patrol}
     public AIStates currentState = AIStates.Idle;
-    public float lastStateChangeTime;
+    [HideInInspector] public float lastStateChangeTime;
+    public float searchTime = 5f;
+    public float chaseTime = 10f;
 
 
     //Targetting and Senses
