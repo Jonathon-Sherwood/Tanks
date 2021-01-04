@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -18,9 +19,16 @@ public class SettingsMenu : MonoBehaviour
     public Slider sfxSlider;
     public Toggle mapOfTheDayToggle;
 
+    //Options menu on/off
+    public GameObject mainMenu;
+    public GameObject optionsMenu;
+
     //Sets volume on load
     public float currentMusicVolume;
     public float currentSFXVolume;
+
+    //Controller Menu Support
+    public GameObject mainFirstButton, optionsFirstButton, optionsClosedButton;
 
     private void Start()
     {
@@ -28,12 +36,17 @@ public class SettingsMenu : MonoBehaviour
         musicSlider.value = currentMusicVolume;
         sfxSlider.value = currentSFXVolume;
         mapOfTheDayToggle.isOn = GameManager.instance.isMapOfTheDay;
+
+        //clear the selected firstbutton and set ours
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(mainFirstButton);
+
     }
 
     private void Update()
     {
         //Turns off second player if oneplayer true
-        if(GameManager.instance.isOnePlayer == true)
+        if (GameManager.instance.isOnePlayer == true)
         {
             playerTwoShip.SetActive(false);
             playerTwoText.SetActive(false);
@@ -51,6 +64,34 @@ public class SettingsMenu : MonoBehaviour
 
         //Playclipatpoint doesn't use mixers, so this holds all values above the minimum
         GameManager.instance.sfxAudio = currentSFXVolume + 80;
+
+        //Allows the player to back out of the options menu without confirming
+        if (Input.GetButtonDown("Cancel") && optionsMenu.activeInHierarchy)
+        {
+            OptionsMenu();
+        }
+
+    }
+
+    //Activates/Deactivates menu based on button input
+    public void OptionsMenu()
+    {
+        mainMenu.SetActive(!mainMenu.activeInHierarchy);
+        optionsMenu.SetActive(!optionsMenu.activeInHierarchy);
+
+        if (optionsMenu.activeInHierarchy)
+        {
+            //clear the selected firstbutton and set ours
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(optionsFirstButton);
+        }
+        else
+        {
+            //clear the selected firstbutton and set ours
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(optionsClosedButton);
+        }
+
     }
 
     //Sets volume to match slider in main menu

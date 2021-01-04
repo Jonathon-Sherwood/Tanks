@@ -25,7 +25,6 @@ public class ShipMover : Mover
 
     public override void Update()
     {
-        print(canMove);
     }
 
     //Takes in a value from controllers to move towards
