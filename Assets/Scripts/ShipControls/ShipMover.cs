@@ -8,6 +8,7 @@ public class ShipMover : Mover
     private Rigidbody rb;
     private AIController aiController;
     public bool movingForward; //Used for calculating reverse speed
+    [HideInInspector] public bool canMove = true;
 
     //Obstacle Avoidance for AI
     public enum AIAvoidanceState { Normal, TurnToAvoid, MoveToAvoid }
@@ -24,13 +25,14 @@ public class ShipMover : Mover
 
     public override void Update()
     {
-
+        print(canMove);
     }
 
     //Takes in a value from controllers to move towards
     public override void Move(bool movingForward)
     {
-        if(data == null) { return; }
+        if (!canMove) { return; }
+        if (data == null) { return; }
 
         Vector3 movement = transform.rotation * Vector3.forward;
 
@@ -76,6 +78,7 @@ public class ShipMover : Mover
 
     public override void MoveTo(Transform targetTransform)
     {
+        if (!canMove) { return; }
         if (currentAvoidState == AIAvoidanceState.Normal)
         {
             Vector3 movement = transform.rotation * Vector3.forward;
@@ -118,6 +121,7 @@ public class ShipMover : Mover
 
     public override void MoveAway(Transform targetTransform)
     {
+        if (!canMove) { return; }
         if (currentAvoidState == AIAvoidanceState.Normal)
         {
             Vector3 movement = transform.rotation * Vector3.forward;

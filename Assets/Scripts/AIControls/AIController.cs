@@ -243,6 +243,8 @@ public class AIController : Controller
 
     public void StoppingDistance()
     {
+        if(target == null) { return; }
+
         //As the ship reaches a certain distance from its target...
         if ((Vector3.Distance(target.transform.position, data.transform.position) < stopDistance))
         {

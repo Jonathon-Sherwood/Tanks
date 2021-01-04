@@ -101,13 +101,12 @@ public class HumanController : Controller
             if (Input.GetAxis("Vertical1") > 0.5)
             {
                 //Move forward (+)
-                mover.movingForward = true;
+                mover.Move(true);
             }
 
             if (Input.GetAxis("Vertical1") < -0.5)
             {
                 //Move backward (-)
-                mover.movingForward = false;
             }
 
             if(Input.GetAxis("Horizontal1") > 0.5)
@@ -123,6 +122,38 @@ public class HumanController : Controller
             }
 
             if (Input.GetButton("Fire1"))
+            {
+                //Shoots cannon
+                shooter.Shoot();
+            }
+        }
+
+        if (controlType == ControlType.Controller2) //Set of controls based on being controller 2
+        {
+            if (Input.GetAxis("Vertical2") > 0.5)
+            {
+                //Move forward (+)
+                mover.Move(true);
+            }
+
+            if (Input.GetAxis("Vertical2") < -0.5)
+            {
+                //Move backward (-)
+            }
+
+            if (Input.GetAxis("Horizontal2") > 0.5)
+            {
+                //Rotate Clockwise (-)
+                mover.Rotate(true);
+            }
+
+            if (Input.GetAxis("Horizontal2") < -0.5)
+            {
+                //Rotate Counterclockwise (+)
+                mover.Rotate(false);
+            }
+
+            if (Input.GetButton("Fire2"))
             {
                 //Shoots cannon
                 shooter.Shoot();

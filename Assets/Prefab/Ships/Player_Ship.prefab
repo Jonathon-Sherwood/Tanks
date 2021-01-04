@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580122748952216121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.41, y: 3.91, z: 24.33}
+  m_LocalPosition: {x: -2.41, y: 3.91, z: 25.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7593810804556035690}
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   damageDealt: 1
   crashDamage: 1
   maxHealth: 4
-  scoreValue: 300
+  scoreValue: 1000
   noiseMaker: 200
   mover: {fileID: 0}
   shooter: {fileID: 0}
@@ -2932,6 +2932,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.710051
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945452911881270522, guid: e3497dfd17756724cac3fa1b1397d481,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4945452911881270527, guid: e3497dfd17756724cac3fa1b1397d481,
         type: 3}

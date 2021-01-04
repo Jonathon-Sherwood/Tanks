@@ -45,6 +45,7 @@ public class AI_RamController : AIController
             case AIStates.Flee:
                 TargetPlayer();
                 Flee(target.transform);
+                data.forwardMoveSpeed = originalSpeed;
                 //Check for state change
                 if (!PlayerCanSee(target))
                 {

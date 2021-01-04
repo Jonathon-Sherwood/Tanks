@@ -349,6 +349,10 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1786441126, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 27.13
+      objectReference: {fileID: 0}
     - target: {fileID: 3687724718872418929, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: m_IsActive

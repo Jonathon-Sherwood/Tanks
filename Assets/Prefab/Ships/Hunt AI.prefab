@@ -77,6 +77,8 @@ MonoBehaviour:
   originalSpeed: 0
   currentState: 2
   lastStateChangeTime: 0
+  searchTime: 5
+  chaseTime: 10
   target: {fileID: 0}
   fieldOfView: 60
   viewDistance: 10
@@ -416,6 +418,10 @@ PrefabInstance:
     - target: {fileID: 1786441125, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786441126, guid: b00647846676f944383ecbced13cb368, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.2
       objectReference: {fileID: 0}
     - target: {fileID: 3687724718872418929, guid: b00647846676f944383ecbced13cb368,
         type: 3}

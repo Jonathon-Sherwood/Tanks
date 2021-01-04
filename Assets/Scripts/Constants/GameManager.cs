@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour
 
             if (pauseCountdown < 0 && !pauseOver)
             {
-                if (player2ShipData.gameObject != null)
+                if (player2ShipData.gameObject != null && !player2Dead)
                 {
                     foreach (AIController controller in aiPlayers) //Sets each AI's target to the spawned player
                     {
