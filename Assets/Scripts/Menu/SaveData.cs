@@ -12,6 +12,7 @@ public class SaveData : MonoBehaviour
     {
         PlayerPrefs.SetString("MyData", HighScoreToString(highScores));
         PlayerPrefs.SetInt("OnePlayer", (GameManager.instance.isOnePlayer ? 1 : 0));
+        PlayerPrefs.SetInt("PS4Controller", (GameManager.instance.isOnePlayer ? 1 : 0));
         PlayerPrefs.SetInt("MapOfTheDay", (GameManager.instance.isMapOfTheDay ? 1 : 0));
         if(settingsMenu == null) { return; }
         PlayerPrefs.SetFloat("MusicVolume", (settingsMenu.currentMusicVolume));
@@ -23,6 +24,7 @@ public class SaveData : MonoBehaviour
     {
         highScores = JsonUtility.FromJson<HighScoreList>(PlayerPrefs.GetString("MyData"));
         GameManager.instance.isOnePlayer = (PlayerPrefs.GetInt("OnePlayer") != 0);
+        GameManager.instance.isOnePlayer = (PlayerPrefs.GetInt("PS4Controller") != 0);
         GameManager.instance.isMapOfTheDay = (PlayerPrefs.GetInt("MapOfTheDay") != 0);
         settingsMenu.currentMusicVolume = (PlayerPrefs.GetFloat("MusicVolume"));
         settingsMenu.currentSFXVolume = (PlayerPrefs.GetFloat("SFXVolume"));

@@ -96,67 +96,137 @@ public class HumanController : Controller
             }
         }
 
-        if (controlType == ControlType.Controller1) //Set of controls based on being controller 1
+        if (GameManager.instance.isPS4Controller)
         {
-            if (Input.GetAxis("Vertical1") > 0.5)
+            if (controlType == ControlType.Controller1) //Set of controls based on being controller 1
             {
-                //Move forward (+)
-                mover.Move(true);
+                if (Input.GetAxis("PS4Vert1") > 0.5)
+                {
+                    //Move forward (+)
+                    mover.Move(true);
+                }
+
+                if (Input.GetAxis("PS4Vert1") < -0.5)
+                {
+                    //Move backward (-)
+                }
+
+                if (Input.GetAxis("PS4Hor1") > 0.5)
+                {
+                    //Rotate Clockwise (-)
+                    mover.Rotate(true);
+                }
+
+                if (Input.GetAxis("PS4Hor1") < -0.5)
+                {
+                    //Rotate Counterclockwise (+)
+                    mover.Rotate(false);
+                }
+
+                if (Input.GetButton("PS4Fire1"))
+                {
+                    //Shoots cannon
+                    shooter.Shoot();
+                }
             }
 
-            if (Input.GetAxis("Vertical1") < -0.5)
+            if (controlType == ControlType.Controller2) //Set of controls based on being controller 2
             {
-                //Move backward (-)
-            }
+                if (Input.GetAxis("PS4Vert2") > 0.5)
+                {
+                    //Move forward (+)
+                    mover.Move(true);
+                }
 
-            if(Input.GetAxis("Horizontal1") > 0.5)
-            {
-                //Rotate Clockwise (-)
-                mover.Rotate(true);
-            }
+                if (Input.GetAxis("PS4Vert2") < -0.5)
+                {
+                    //Move backward (-)
+                }
 
-            if (Input.GetAxis("Horizontal1") < -0.5)
-            {
-                //Rotate Counterclockwise (+)
-                mover.Rotate(false);
-            }
+                if (Input.GetAxis("PS4Hor2") > 0.5)
+                {
+                    //Rotate Clockwise (-)
+                    mover.Rotate(true);
+                }
 
-            if (Input.GetButton("Fire1"))
-            {
-                //Shoots cannon
-                shooter.Shoot();
+                if (Input.GetAxis("PS4Hor2") < -0.5)
+                {
+                    //Rotate Counterclockwise (+)
+                    mover.Rotate(false);
+                }
+
+                if (Input.GetButton("PS4Fire2"))
+                {
+                    //Shoots cannon
+                    shooter.Shoot();
+                }
             }
         }
 
-        if (controlType == ControlType.Controller2) //Set of controls based on being controller 2
+        else 
         {
-            if (Input.GetAxis("Vertical2") > 0.5)
+            if (controlType == ControlType.Controller1) //Set of controls based on being controller 1
             {
-                //Move forward (+)
-                mover.Move(true);
+                if (Input.GetAxis("XBOXVert1") > 0.5)
+                {
+                    //Move forward (+)
+                    mover.Move(true);
+                }
+
+                if (Input.GetAxis("XBOXVert1") < -0.5)
+                {
+                    //Move backward (-)
+                }
+
+                if (Input.GetAxis("XBOXHor1") > 0.5)
+                {
+                    //Rotate Clockwise (-)
+                    mover.Rotate(true);
+                }
+
+                if (Input.GetAxis("XBOXHor1") < -0.5)
+                {
+                    //Rotate Counterclockwise (+)
+                    mover.Rotate(false);
+                }
+
+                if (Input.GetAxis("XBOXFire1") > 0)
+                {
+                    //Shoots cannon
+                    shooter.Shoot();
+                }
             }
 
-            if (Input.GetAxis("Vertical2") < -0.5)
+            if (controlType == ControlType.Controller2) //Set of controls based on being controller 2
             {
-                //Move backward (-)
-            }
+                if (Input.GetAxis("XBOXVert2") > 0.5)
+                {
+                    //Move forward (+)
+                    mover.Move(true);
+                }
 
-            if (Input.GetAxis("Horizontal2") > 0.5)
-            {
-                //Rotate Clockwise (-)
-                mover.Rotate(true);
-            }
+                if (Input.GetAxis("XBOXVert2") < -0.5)
+                {
+                    //Move backward (-)
+                }
 
-            if (Input.GetAxis("Horizontal2") < -0.5)
-            {
-                //Rotate Counterclockwise (+)
-                mover.Rotate(false);
-            }
+                if (Input.GetAxis("XBOXHor2") > 0.5)
+                {
+                    //Rotate Clockwise (-)
+                    mover.Rotate(true);
+                }
 
-            if (Input.GetButton("Fire2"))
-            {
-                //Shoots cannon
-                shooter.Shoot();
+                if (Input.GetAxis("XBOXHor2") < -0.5)
+                {
+                    //Rotate Counterclockwise (+)
+                    mover.Rotate(false);
+                }
+
+                if (Input.GetAxis("XBOXFire2") > 0)
+                {
+                    //Shoots cannon
+                    shooter.Shoot();
+                }
             }
         }
     }

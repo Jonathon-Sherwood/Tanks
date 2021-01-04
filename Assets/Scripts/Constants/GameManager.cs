@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     private int pauseTime = 10;
     private float pauseCountdown;
     private bool pauseOver = true;
-    [HideInInspector]public bool isOnePlayer;
+    [HideInInspector] public bool isOnePlayer;
+    [HideInInspector] public bool isPS4Controller;
 
     public bool isMapOfTheDay;
 
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
     public SaveData saveData;
     public int onePlayer;
     public int mapOfTheDay;
+    public int PS4Controller;
 
     private void Awake()
     {
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
         //Sets the values based on saved numbers from savedata
         onePlayer = isOnePlayer ? 1 : 0;
         mapOfTheDay = isMapOfTheDay ? 1 : 0;
+        PS4Controller = isPS4Controller ? 1 : 0;
     }
 
     private void Update()
@@ -80,6 +83,9 @@ public class GameManager : MonoBehaviour
         if (isMapOfTheDay) { mapOfTheDay = 1; }
         else if (!isMapOfTheDay) { mapOfTheDay = 0; }
 
+        //Converts bool to int for saving
+        if (isPS4Controller) { PS4Controller = 1; }
+        else if (!isPS4Controller) { PS4Controller = 0; }
 
         if (SceneManager.GetActiveScene().buildIndex != 1) //Stops the gamemanager from running game related scripts off the game scene
         {

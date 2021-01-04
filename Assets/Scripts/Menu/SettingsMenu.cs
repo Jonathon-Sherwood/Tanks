@@ -19,16 +19,18 @@ public class SettingsMenu : MonoBehaviour
     public Slider sfxSlider;
     public Toggle mapOfTheDayToggle;
 
-    //Options menu on/off
+    //Menus on/off
     public GameObject mainMenu;
     public GameObject optionsMenu;
+    public GameObject controllerMenu;
 
     //Sets volume on load
     public float currentMusicVolume;
     public float currentSFXVolume;
 
     //Controller Menu Support
-    public GameObject mainFirstButton, optionsFirstButton, optionsClosedButton;
+    public GameObject controllerFirstButton, mainFirstButton, optionsFirstButton, optionsClosedButton;
+    public StandaloneInputModule input;
 
     private void Start()
     {
@@ -39,7 +41,7 @@ public class SettingsMenu : MonoBehaviour
 
         //clear the selected firstbutton and set ours
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(mainFirstButton);
+        EventSystem.current.SetSelectedGameObject(controllerFirstButton);
 
     }
 
@@ -65,12 +67,44 @@ public class SettingsMenu : MonoBehaviour
         //Playclipatpoint doesn't use mixers, so this holds all values above the minimum
         GameManager.instance.sfxAudio = currentSFXVolume + 80;
 
-        //Allows the player to back out of the options menu without confirming
-        if (Input.GetButtonDown("Cancel") && optionsMenu.activeInHierarchy)
+        if(input.cancelButton == "PS4Cancel")
         {
-            OptionsMenu();
+            //Allows the player to back out of the options menu without confirming
+            if (Input.GetButtonDown("PS4Cancel") && optionsMenu.activeInHierarchy)
+            {
+                OptionsMenu();
+            }
         }
 
+        if (input.cancelButton == "XBOXCancel")
+        {
+            //Allows the player to back out of the options menu without confirming
+            if (Input.GetButtonDown("XBOXCancel") && optionsMenu.activeInHierarchy)
+            {
+                OptionsMenu();
+            }
+        }
+    }
+
+    public void ControllerMenu()
+    {
+        mainMenu.SetActive(!mainMenu.activeInHierarchy);
+        controllerMenu.SetActive(!controllerMenu.activeInHierarchy);
+        input.submitButton = "Submit";
+        input.cancelButton = "Cancel";
+
+        if (controllerMenu.activeInHierarchy)
+        {
+            //clear the selected firstbutton and set ours
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(controllerFirstButton);
+        }
+        else
+        {
+            //clear the selected firstbutton and set ours
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(mainFirstButton);
+        }
     }
 
     //Activates/Deactivates menu based on button input
@@ -118,6 +152,22 @@ public class SettingsMenu : MonoBehaviour
     public void IsTwoPlayer()
     {
         GameManager.instance.isOnePlayer = false;
+    }
+
+    public void IsPS4Controller()
+    {
+        ControllerMenu();
+        GameManager.instance.isPS4Controller = true;
+        input.submitButton = "PS4Submit";
+        input.cancelButton = "PS4Cancel";
+    }
+
+    public void IsXBOXController()
+    {
+        ControllerMenu();
+        GameManager.instance.isPS4Controller = false;
+        input.submitButton = "XBOXSubmit";
+        input.cancelButton = "XBOXCancel";
     }
 
     //Exits the application
