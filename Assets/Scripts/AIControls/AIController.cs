@@ -65,16 +65,36 @@ public class AIController : Controller
             waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
             pauseOver = true;
         }
-        if(target == null)
+        FindClosestEnemy();
+    }
+
+    public void FindClosestEnemy()
+    {
+        if (!GameManager.instance.isOnePlayer)
         {
-            if(GameManager.instance.playerShipData != null)
+            //Creates variables awaiting input
+            float distanceToClosestEnemy = Mathf.Infinity;
+            ShipData closestEnemy = null;
+
+            //Holds onto only the players as potential enemies
+            ShipData[] allEnemies = { (GameManager.instance.playerShipData), (GameManager.instance.player2ShipData) };
+
+            //Cycles through the distance of each enemy and decides which is the closest
+            foreach (ShipData currentEnemy in allEnemies)
             {
-                target = GameManager.instance.playerShipData.gameObject;
+                float distanceToEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
+                if (distanceToEnemy < distanceToClosestEnemy)
+                {
+                    distanceToClosestEnemy = distanceToEnemy;
+                    closestEnemy = currentEnemy;
+                }
             }
-            else
-            {
-                target = GameManager.instance.player2ShipData.gameObject;
-            }
+            //Sets the target to the closest enemy
+            target = closestEnemy.gameObject;
+        }
+        else
+        {
+            target = GameManager.instance.playerShipData.gameObject;
         }
     }
 

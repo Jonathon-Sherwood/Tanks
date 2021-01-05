@@ -63,7 +63,7 @@ MonoBehaviour:
   spinSpeed: 180
   powerupData:
     amount: 5000
-    lifespan: 10
+    lifespan: 4
     isInfinite: 0
     soundEffect: {fileID: 0}
     expire: {fileID: 0}

@@ -155,6 +155,8 @@ MonoBehaviour:
   originalSpeed: 0
   currentState: 2
   lastStateChangeTime: 0
+  searchTime: 5
+  chaseTime: 10
   target: {fileID: 0}
   fieldOfView: 30
   viewDistance: 500
@@ -292,7 +294,7 @@ PrefabInstance:
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
       propertyPath: maxSpeed
-      value: 5000
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
         type: 3}
@@ -311,6 +313,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4945452911881270527, guid: e3497dfd17756724cac3fa1b1397d481,
         type: 3}
+    - target: {fileID: -6364315053487326838, guid: b00647846676f944383ecbced13cb368,
+        type: 3}
+      propertyPath: scoreValue
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 1716970637, guid: b00647846676f944383ecbced13cb368, type: 3}
       propertyPath: m_AngularDrag
       value: 61.97

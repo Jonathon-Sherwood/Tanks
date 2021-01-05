@@ -75,6 +75,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
         //Converts bool to int for saving
         if (isOnePlayer) { onePlayer = 1; }
         else if (!isOnePlayer) { onePlayer = 0; }
@@ -248,7 +253,10 @@ public class GameManager : MonoBehaviour
         {
             foreach(HumanController player in humanPlayers)
             {
-                Destroy(player.mover.gameObject);
+                if (player.mover.gameObject != null)
+                {
+                    Destroy(player.mover.gameObject);
+                }
             }
         }
     }

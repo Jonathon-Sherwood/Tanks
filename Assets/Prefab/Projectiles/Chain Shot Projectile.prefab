@@ -209,7 +209,7 @@ MonoBehaviour:
   spinSpeed: 800
   powerupData:
     amount: 0
-    lifespan: 10
+    lifespan: 3
     isInfinite: 0
     soundEffect: {fileID: 0}
     expire: {fileID: 0}

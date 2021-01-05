@@ -92,6 +92,8 @@ public class SettingsMenu : MonoBehaviour
         controllerMenu.SetActive(!controllerMenu.activeInHierarchy);
         input.submitButton = "Submit";
         input.cancelButton = "Cancel";
+        input.verticalAxis = "Vertical";
+        input.horizontalAxis = "Horizontal";
 
         if (controllerMenu.activeInHierarchy)
         {
@@ -160,6 +162,8 @@ public class SettingsMenu : MonoBehaviour
         GameManager.instance.isPS4Controller = true;
         input.submitButton = "PS4Submit";
         input.cancelButton = "PS4Cancel";
+        input.verticalAxis = "PS4Vertical";
+        input.horizontalAxis = "PS4Horizontal";
     }
 
     public void IsXBOXController()
@@ -168,6 +172,8 @@ public class SettingsMenu : MonoBehaviour
         GameManager.instance.isPS4Controller = false;
         input.submitButton = "XBOXSubmit";
         input.cancelButton = "XBOXCancel";
+        input.verticalAxis = "XBOXVertical";
+        input.horizontalAxis = "XBOXHorizontal";
     }
 
     //Exits the application

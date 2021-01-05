@@ -26,6 +26,7 @@ public class GameOver : MonoBehaviour
     {
         saveData = GameManager.instance.saveData;
         highScoreList = saveData.highScores;
+        highScoreList.highScores = new List<Highscores>();
     }
 
     public void Name()
@@ -64,14 +65,18 @@ public class GameOver : MonoBehaviour
 
     public void DisplayScore()
     {
+
         //Turns off player name input and shows scoreboard
         playerScoreInput.gameObject.SetActive(false); 
         highScoreScreen.SetActive(true);
 
-        //Adds the already existing high scores to the list
-        scores.Add(highScoreList.highScores[0]);
-        scores.Add(highScoreList.highScores[1]);
-        scores.Add(highScoreList.highScores[2]);
+        if (scores != null)
+        {
+            //Adds the already existing high scores to the list
+            scores.Add(highScoreList.highScores[0]);
+            scores.Add(highScoreList.highScores[1]);
+            scores.Add(highScoreList.highScores[2]);
+        }
 
         //Sorts entire list including new player scores
         scores.Sort();
@@ -79,7 +84,10 @@ public class GameOver : MonoBehaviour
         scores.GetRange(0, 2);
 
         //Assigns the top 3 scores to the list
-        highScoreList.highScores.Clear();
+        if (highScoreList != null)
+        {
+            highScoreList.highScores.Clear();
+        }
         highScoreList.highScores.Add(scores[0]);
         highScoreList.highScores.Add(scores[1]);
         highScoreList.highScores.Add(scores[2]);

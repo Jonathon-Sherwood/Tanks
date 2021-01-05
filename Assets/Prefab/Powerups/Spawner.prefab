@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objecToSpawn: {fileID: 7236950323718983496, guid: 83406dd1ad2205948a6d4fcf7e4fa74d,
     type: 3}
-  respawnTime: 5
+  respawnTime: 20
   spawnOnStart: 1

@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinSpeed: 180
   powerupData:
-    amount: 2
+    amount: 1
     lifespan: 0
     isInfinite: 1
     soundEffect: {fileID: 0}

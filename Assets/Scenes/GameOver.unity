@@ -443,7 +443,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 99999999999
 --- !u!1001 &362506602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: New Kid
 --- !u!1 &722420998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1289,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 48000
 --- !u!222 &969662064
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1522,7 +1522,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 50000
 --- !u!1 &1136994089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,8 +1654,8 @@ MonoBehaviour:
   - {fileID: 1080707344}
   - {fileID: 969662063}
   scores:
-  - playerName: sdaf
-    score: 500
+  - playerName: Jonathon
+    score: 9999999
 --- !u!1 &1278968534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,7 +1732,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Jonathon
 --- !u!1 &1391084446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,7 +1979,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Hardcore
 --- !u!1001 &1665645722
 PrefabInstance:
   m_ObjectHideFlags: 0
