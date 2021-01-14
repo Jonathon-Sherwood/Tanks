@@ -957,7 +957,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Kid
+  m_Text: Player 2
 --- !u!1 &722420998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1289,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 48000
+  m_Text: 48300
 --- !u!222 &969662064
 CanvasRenderer:
   m_ObjectHideFlags: 0

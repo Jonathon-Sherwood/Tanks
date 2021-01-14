@@ -26,7 +26,6 @@ public class GameOver : MonoBehaviour
     {
         saveData = GameManager.instance.saveData;
         highScoreList = saveData.highScores;
-        highScoreList.highScores = new List<Highscores>();
     }
 
     public void Name()
@@ -76,6 +75,10 @@ public class GameOver : MonoBehaviour
             scores.Add(highScoreList.highScores[0]);
             scores.Add(highScoreList.highScores[1]);
             scores.Add(highScoreList.highScores[2]);
+        }
+        else
+        {
+            scores = saveData.highScores.highScores;
         }
 
         //Sorts entire list including new player scores

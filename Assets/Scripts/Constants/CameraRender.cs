@@ -14,6 +14,6 @@ public class CameraRender : MonoBehaviour
     //Turns back on the fog for the rest of the game
     private void OnPostRender()
     {
-        RenderSettings.fog = true;
+       RenderSettings.fog = true;
     }
 }

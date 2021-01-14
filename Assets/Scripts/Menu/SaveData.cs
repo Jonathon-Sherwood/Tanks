@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SaveData : MonoBehaviour
 {
+    [Tooltip("AAAAAAAAAAAAAAAAAAH")]
     public HighScoreList highScores;
     public SettingsMenu settingsMenu;
 
@@ -22,7 +23,11 @@ public class SaveData : MonoBehaviour
     //Called at at the beginning of the game for options and scores
     public void LoadFromPlayerPrefs()
     {
-        highScores = JsonUtility.FromJson<HighScoreList>(PlayerPrefs.GetString("MyData"));
+        if (highScores != null)
+        {
+            highScores = JsonUtility.FromJson<HighScoreList>(PlayerPrefs.GetString("MyData"));
+            print(highScores);
+        }
         GameManager.instance.isOnePlayer = (PlayerPrefs.GetInt("OnePlayer") != 0);
         GameManager.instance.isOnePlayer = (PlayerPrefs.GetInt("PS4Controller") != 0);
         GameManager.instance.isMapOfTheDay = (PlayerPrefs.GetInt("MapOfTheDay") != 0);

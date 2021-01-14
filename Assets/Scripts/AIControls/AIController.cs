@@ -82,11 +82,14 @@ public class AIController : Controller
             //Cycles through the distance of each enemy and decides which is the closest
             foreach (ShipData currentEnemy in allEnemies)
             {
-                float distanceToEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
-                if (distanceToEnemy < distanceToClosestEnemy)
+                if (currentEnemy != null)
                 {
-                    distanceToClosestEnemy = distanceToEnemy;
-                    closestEnemy = currentEnemy;
+                    float distanceToEnemy = (currentEnemy.transform.position - this.transform.position).sqrMagnitude;
+                    if (distanceToEnemy < distanceToClosestEnemy)
+                    {
+                        distanceToClosestEnemy = distanceToEnemy;
+                        closestEnemy = currentEnemy;
+                    }
                 }
             }
             //Sets the target to the closest enemy
