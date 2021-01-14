@@ -59,7 +59,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        saveData.LoadFromPlayerPrefs();
+        if (saveData.highScores != null)
+        {
+            saveData.LoadFromPlayerPrefs();
+        }
     }
 
     private void Start()
